@@ -1,0 +1,24 @@
+[project]
+name = "tu-wiki"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "numpy", "scipy", "matplotlib", "scikit-learn", "pandas", "sympy", "networkx",
+  "pytest", "jupyter", "pulp", "cryptography", "torch", "torchvision",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+python_files = ["test_*.py"]
+
+# CPU-only torch on Linux (CI): avoids several GB of CUDA wheels.
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+torchvision = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]

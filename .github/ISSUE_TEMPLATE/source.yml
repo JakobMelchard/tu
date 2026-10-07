@@ -1,0 +1,24 @@
+name: Suggest a source
+description: A public source that a course's notes should use.
+labels: [source]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: URL
+    validations:
+      required: true
+  - type: input
+    id: licence
+    attributes:
+      label: Licence
+      description: E.g. CC BY 4.0, public domain, all rights reserved (cite only), unknown.
+    validations:
+      required: true
+  - type: textarea
+    id: where
+    attributes:
+      label: Course and notes
+      description: Which course and which notes it supports, and how.
+    validations:
+      required: true

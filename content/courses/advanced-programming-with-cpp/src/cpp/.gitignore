@@ -1,0 +1,6 @@
+bin/
+bin-asan/
+build/
+*.o
+*.pcm
+*.dSYM/

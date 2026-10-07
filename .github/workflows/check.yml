@@ -1,0 +1,49 @@
+name: Check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npx quartz build
+      - run: python3 scripts/check.py
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+      - run: uv sync
+      - name: pytest per course
+        run: |
+          fail=0
+          for d in content/courses/*/src; do
+            [ -n "$(find "$d" -name 'test_*.py' -print -quit)" ] || continue
+            echo "::group::$d"
+            uv run pytest "$d" -q -p no:cacheprovider || fail=1
+            echo "::endgroup::"
+          done
+          exit $fail
+      - name: make test per course
+        run: |
+          fail=0
+          for m in content/courses/*/src/c/Makefile content/courses/*/src/cpp/Makefile; do
+            [ -f "$m" ] && grep -q '^test:' "$m" || continue
+            echo "::group::$m"
+            make -C "$(dirname "$m")" test || fail=1
+            echo "::endgroup::"
+          done
+          exit $fail

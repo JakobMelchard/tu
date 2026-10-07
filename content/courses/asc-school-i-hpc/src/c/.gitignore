@@ -1,0 +1,17 @@
+# built by `make`; rebuild with `make` or `make test`
+hello_mpi
+sendrecv
+deadlock
+pingpong
+nonblocking
+collectives
+comm_split
+cart_topology
+derived_types
+onesided
+shmem_onesided
+mpi_io
+pi_reduce
+heat1d_halo
+hybrid_omp_mpi
+mpi_io_demo*.bin

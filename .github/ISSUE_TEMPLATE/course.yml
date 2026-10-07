@@ -1,0 +1,25 @@
+name: Add a course
+description: Propose a new course for the wiki.
+labels: [course]
+body:
+  - type: input
+    id: number
+    attributes:
+      label: Course number
+      placeholder: 192.125
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: As on TISS, German titles verbatim.
+    validations:
+      required: true
+  - type: input
+    id: programme
+    attributes:
+      label: Programme
+      placeholder: 066 558 Quantum Information Science and Technology
+    validations:
+      required: true

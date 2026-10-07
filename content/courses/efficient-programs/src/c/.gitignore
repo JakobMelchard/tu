@@ -1,0 +1,14 @@
+# build outputs of the Makefile (make clean removes them)
+matmul_steps
+pointer_chase
+tsp_greedy
+branch_predict
+recurrence
+profile_demo
+profile_demo_cov
+profile_demo_pg
+*.gcno
+*.gcda
+*.gcov
+gmon.out
+perf.data*

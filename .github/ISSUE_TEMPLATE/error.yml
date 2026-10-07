@@ -1,0 +1,30 @@
+name: Error in a note
+description: Something in a note, transcription or code is wrong.
+labels: [error]
+body:
+  - type: input
+    id: course
+    attributes:
+      label: Course
+      placeholder: 192.125 Introduction to Cryptography
+    validations:
+      required: true
+  - type: input
+    id: file
+    attributes:
+      label: File or page
+      placeholder: content/courses/introduction-to-cryptography/notes/03-block-ciphers.md
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong
+      description: Quote the passage and say what it should be.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: URL or reference that supports the correction.

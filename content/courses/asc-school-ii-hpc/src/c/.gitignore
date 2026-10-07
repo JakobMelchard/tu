@@ -1,0 +1,6 @@
+hybrid_pi
+affinity_report
+simd_dot
+mpi_io_write_read
+io_demo_*.bin
+*.o

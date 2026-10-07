@@ -1,0 +1,7 @@
+# Build output of the Makefile and of CMake (make cmake); never tracked.
+bin/
+build/
+*.o
+*.dSYM/
+# written by ./bin/vtk_writer (demo) into the working directory
+*.vtk

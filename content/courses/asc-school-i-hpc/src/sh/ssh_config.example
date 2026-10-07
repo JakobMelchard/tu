@@ -1,0 +1,68 @@
+# ssh_config.example - template for ~/.ssh/config (chmod 600 ~/.ssh/config).
+# Then `ssh vsc5` instead of the full command line, and scp/rsync/sftp pick up
+# the same aliases.  Replace `myusername`.
+#
+# READ THIS FIRST - how logging in to ASC actually works [notes/03]:
+#   * Authentication is PASSWORD + a one-time password sent to your mobile by
+#     SMS.  The OTP is valid 12 h; the password is asked every session.
+#     A key in ~/.ssh does NOT replace that.
+#   * Logins are only accepted from the IP ranges of the ASC partner
+#     universities: be on campus, on your university VPN, or on ASC's WireGuard.
+#   * `trainee##` course accounts that are not in such a range go through the
+#     jump host vmos.vsc.ac.at (see below).
+#   * Login nodes are cgroup-limited to 24 GB and 4 cores PER USER.  Compile
+#     with at most 4 threads; run nothing bigger.
+# So the value of this file here is not passwordless login: it is the aliases,
+# the keep-alives, and above all ControlMaster, which reuses one authenticated
+# connection for many scp/rsync calls instead of asking for password + OTP each
+# time.
+
+Host vsc5
+    HostName vsc5.vsc.ac.at
+    User     myusername                   # your ASC user, not your TU account name
+    ServerAliveInterval 60                # keep NAT/firewalls from dropping idle sessions
+    ServerAliveCountMax 3
+    ControlMaster auto                    # <- the big win: one login, many transfers
+    ControlPath ~/.ssh/cm-%r@%h:%p
+    ControlPersist 30m
+    ForwardAgent no                       # only if you must git-push from the cluster
+
+Host vsc4
+    HostName vsc4.vsc.ac.at
+    User     myusername
+    ServerAliveInterval 60
+    ControlMaster auto
+    ControlPath ~/.ssh/cm-%r@%h:%p
+    ControlPersist 30m
+
+# A specific login node, when you want to come back to the same one
+# (VSC-4: l40 ... l47; VSC-5: l50 ... l56).
+Host l5?
+    HostName %h.vsc.ac.at
+    User     myusername
+    ControlMaster auto
+    ControlPath ~/.ssh/cm-%r@%h:%p
+
+# Course accounts without a partner-university IP: hop via vmos.
+#   ssh -t trainee##@vmos.vsc.ac.at vsc5
+Host vsc5-jump
+    HostName vsc5.vsc.ac.at
+    User     traineeXX
+    ProxyJump traineeXX@vmos.vsc.ac.at
+
+# Compute nodes of a job you already hold (`squeue --me` gives the node names,
+# e.g. n3501-001 on VSC-5, n4901-001 on VSC-4).  Useful for `htop` on a running
+# job, which ASC documents as the way to watch one.
+Host n3* n4*
+    HostName %h
+    ProxyJump vsc5
+    User     myusername
+
+# Defaults for everything else
+Host *
+    AddKeysToAgent yes
+    HashKnownHosts yes
+    # If you do keep a key pair, it lives here and must be mode 600, with
+    # ~/.ssh mode 700, or ssh silently ignores it:
+    #   ssh-keygen -t ed25519 -C "laptop-2026"
+    #   eval "$(ssh-agent -s)"; ssh-add ~/.ssh/id_ed25519

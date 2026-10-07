@@ -1,0 +1,7 @@
+# Built by `make`; sources are the .cpp files next to them.
+lu
+cg
+qr
+fft
+rk4
+*.dSYM/

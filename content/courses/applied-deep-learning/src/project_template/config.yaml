@@ -1,0 +1,31 @@
+# Single source of truth for one experiment. Copy and rename per run (config_baseline.yaml, ...).
+experiment: baseline            # name used for the log and checkpoint folder
+seed: 0
+device: auto                    # auto -> mps if available, else cuda, else cpu
+
+data:
+  root: data/processed          # produced by data/make_dataset.py (write it; never edit raw/ by hand)
+  n_samples: 4000               # the synthetic placeholder ignores root and generates this many
+  image_size: 32
+  val_fraction: 0.15
+  test_fraction: 0.15           # split once, by seed; the test split is read only in evaluate.py
+  num_workers: 0                # >0 needs the `if __name__ == "__main__"` guard on macOS
+
+model:
+  name: shape_cnn               # key in models/__init__.py
+  width: 16
+  n_classes: 3
+  dropout: 0.0
+
+train:
+  steps: 600
+  batch_size: 64
+  lr: 3.0e-3
+  weight_decay: 1.0e-4
+  schedule: onecycle            # onecycle | cosine | constant
+  clip_grad: 1.0
+  eval_every: 100
+  log_every: 50
+  checkpoint_dir: models/checkpoints
+  resume: null                  # path to a checkpoint to continue from
+  amp: false                    # torch.autocast in bf16; little benefit on MPS, large on CUDA
