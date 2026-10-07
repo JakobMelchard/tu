@@ -11,7 +11,9 @@
 # those flags and #if-guards what is missing, printing SKIP instead of failing.
 # A program that needs a missing feature as a whole (modules/) is skipped with a message.
 CXX      := clang++
-STD      := -std=c++23
+# STDLIB from the environment, e.g. -stdlib=libc++ on Linux (CI): libstdc++ lacks parts of the C++23 used here
+STDLIB   ?=
+STD      := -std=c++23 $(STDLIB)
 CXXFLAGS := $(STD) -O2 -Wall -Wextra
 BIN      := bin
 

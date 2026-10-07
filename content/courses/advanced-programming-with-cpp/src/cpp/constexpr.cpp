@@ -35,10 +35,7 @@ constexpr std::size_t count_words(std::string_view s) {
     std::string copy{s};                        // transient allocation, freed on return
     return static_cast<std::size_t>(std::ranges::count(copy, ' ')) + 1;
 }
-// clang with GCC 14's libstdc++ cannot evaluate std::string construction at compile time
-#if !(defined(__clang__) && defined(__GLIBCXX__))
 static_assert(count_words("a b c d") == 4);
-#endif
 
 #if __cpp_lib_constexpr_memory >= 202202L
 constexpr int via_unique_ptr() { auto p = std::make_unique<int>(41); return *p + 1; }   // C++23

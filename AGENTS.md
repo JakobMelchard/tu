@@ -20,8 +20,7 @@ One folder per course, `content/courses/<slug>/`. Copy
 | `refs/SOURCES.md` | source register; entries `S1`, `S2`, ... with URL, retrieval date, licence, use |
 | `refs/README.md` | what is in `refs/` and the licence reasoning for vendored files |
 | `refs/fetch-sources.sh` | optional; re-fetches vendored files |
-| `docs/tiss.md` | dated transcription of the public TISS course page |
-| `docs/tiss-api.xml`, `docs/tiss-api.md` | TISS API record, `https://tiss.tuwien.ac.at/api/course/<nr without dot>-<semester>` (XML) and its rendering |
+| `docs/tiss.md` | dated transcription of the public TISS course page, facts in our own words (source: the page and `https://tiss.tuwien.ac.at/api/course/<nr without dot>-<semester>`, XML); do not commit the raw API record, it is TU Wien's prose |
 | `src/py/` | Python reference code; tests in `test_*.py` |
 | `src/c/`, `src/cpp/` | optional; Makefile with a `test` target |
 

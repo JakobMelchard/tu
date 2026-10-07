@@ -37,7 +37,11 @@ jobs:
             echo "::endgroup::"
           done
           exit $fail
+      # the C++23 reference code targets libc++ (as on macOS); libstdc++ lacks parts of it
+      - run: sudo apt-get install -y -qq libc++-dev libc++abi-dev
       - name: make test per course
+        env:
+          STDLIB: -stdlib=libc++
         run: |
           fail=0
           for m in content/courses/*/src/c/Makefile content/courses/*/src/cpp/Makefile; do
