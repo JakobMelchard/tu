@@ -7,8 +7,9 @@ from ising_snapshots import (T_C, energy_per_spin, magnetisation, onsager_energy
 
 def test_exact_values():
     assert T_C == pytest.approx(2.269185, abs=1e-6)
-    # u(T_c) = -sqrt 2 (at T_c itself K(1) = inf times 0; approach it)
-    assert onsager_energy(T_C * (1 + 1e-9)) == pytest.approx(-np.sqrt(2), abs=1e-6)
+    # u(T_c) = -sqrt 2 (at T_c itself K(1) = inf times 0; approach it). At 1e-9 from T_c,
+    # k^2 rounds to exactly 1 with some libm builds; 1e-7 keeps 1 - k^2 near 1e-14, error ~2e-6.
+    assert onsager_energy(T_C * (1 + 1e-7)) == pytest.approx(-np.sqrt(2), abs=1e-5)
     assert float(onsager_magnetisation(3.0)) == 0.0
     assert float(onsager_magnetisation(1.0)) == pytest.approx(0.99928, abs=1e-5)
 
