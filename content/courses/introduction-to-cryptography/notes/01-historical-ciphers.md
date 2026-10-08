@@ -197,6 +197,98 @@ structure (ASCII text, a bitmap header, base64) is recovered from unigram and
 digram statistics. Key-space size is necessary and not remotely sufficient; the
 scheme has no security definition and no proof, which is the actual objection.
 
+## Cards
+
+```card id=crypto-l1-syntax
+Syntax of a private-key encryption scheme, and which algorithms may be randomised?
+---
+$(\mathsf{Gen},\mathsf{Enc},\mathsf{Dec})$ with $\mathsf{Dec}_k(\mathsf{Enc}_k(m))=m$ (correctness). Gen and Enc may be randomised; only Dec must be deterministic.
+```
+
+```card id=crypto-l1-enc-deterministic
+True or false: encryption must be deterministic so ciphertexts decrypt uniquely.
+---
+False. Only Dec must be deterministic. CPA-secure schemes need randomised Enc.
+```
+
+```card id=crypto-l1-kerckhoffs
+Kerckhoffs' principle, and why?
+---
+Enc and Dec are public, only the key is secret. Keys are easier to replace than algorithms, one public algorithm serves everyone, and public algorithms get reviewed by everyone.
+```
+
+```card id=crypto-l1-scytale
+Scytale: what kind of cipher, what is the key, how is it broken?
+---
+Transposition: letters are moved, not replaced. Key = number of columns (rod circumference), at most $n$ candidates: try them all. Letter frequencies stay exactly English.
+```
+
+```card id=crypto-l1-transposition-vs-substitution
+Ciphertext letter frequencies match English letter by letter. Transposition or substitution?
+---
+Transposition. A substitution relabels letters, so the profile is permuted (only its sorted version matches).
+```
+
+```card id=crypto-l1-shift
+Shift cipher: key space and two attacks.
+---
+$k\in\mathbb Z_{26}$, $c_i=m_i+k \bmod 26$ (Caesar: $k=3$). Brute force over 26 keys, or frequency analysis: pick $k$ maximising $\sum_i f_i\,p_{i+k}$.
+```
+
+```card id=crypto-l1-substitution
+Monoalphabetic substitution: key space size, and why is it still broken?
+---
+$26!\approx 2^{88}$ permutations. It preserves letter frequencies (only relabelled): match ciphertext ranks to E, T, A, O, ..., then digrams TH, HE, IN.
+```
+
+```card id=crypto-l1-key-space
+Sufficient key space principle: necessary or sufficient?
+---
+Necessary, not sufficient. Enumerable key space is fatal, but a huge one (substitution, $2^{88}$) still falls if the cipher leaks a statistic.
+```
+
+```card id=crypto-l1-vigenere
+Vigenère: definition, and how to break it with known period $\ell$.
+---
+Polyalphabetic: position $i$ shifted by key letter $i \bmod \ell$. Split the ciphertext into $\ell$ residue classes; each is a shift cipher, break each by frequency analysis.
+```
+
+```card id=crypto-l1-period
+How to find the Vigenère period $\ell$ when unknown?
+---
+Kasiski (distances between repeated ciphertext fragments share $\ell$ as a factor) or the index of coincidence. Not covered in detail in the lecture.
+```
+
+```card id=crypto-l1-poly-immune
+True or false: unlike monoalphabetic ciphers, polyalphabetic ciphers are immune to frequency analysis.
+---
+False. Each residue class mod the period is monoalphabetic and falls to frequency analysis.
+```
+
+```card id=crypto-l1-chosen-plaintext
+Why is a polyalphabetic cipher weak against a chosen-plaintext attacker?
+---
+One chosen message encrypted reveals the key directly from the ciphertext, no statistics needed.
+```
+
+```card id=crypto-l1-vernam
+Vernam cipher: key requirements and security.
+---
+Key uniform, as long as the message, used once; $c_i=m_i+k_i$ (mod 26, or XOR). Perfectly secret (one-time pad, lecture 2).
+```
+
+```card id=crypto-l1-key-reuse
+Why does reusing a Vernam key break it?
+---
+$c_1-c_2=m_1-m_2$: the key cancels, leaving the difference of two plaintexts, which statistics recover.
+```
+
+```card id=crypto-l1-lesson
+Lecture 1's lesson in one line.
+---
+A cipher is broken when it leaks a statistic, whatever its key space; so from lecture 2 on: definitions and proofs, not designs that look hard.
+```
+
 ## Code
 
 `src/py/classical.py`: `scytale_encrypt`, `scytale_decrypt`, `scytale_break`,
