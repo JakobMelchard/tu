@@ -2,7 +2,7 @@
 
 Transcribed from https://tiss.tuwien.ac.at/course/courseDetails.xhtml?courseNr=192043&semester=2026W
 on 2026-09-21, **re-fetched and extended on 2026-09-22** (single appointments
-expanded; year-on-year comparison added; discrepancies recorded); re-read on **2026-09-27**: no field changed, the seven overlapping room bookings and both discrepancies are still there. Content
+expanded; year-on-year comparison added; discrepancies recorded); re-read on **2026-09-27**: no field changed, the seven overlapping room bookings and both discrepancies are still there. Re-read on **2026-10-09** (page and API record): the only change is that the API record now links the TUWEL course, id 83986; every date, room, exam and registration row is as below. TUWEL itself [S62] is compared with this page in the last section. Content
 sections are in tiss-api.md; the source register is
 [`../refs/SOURCES.md`](../refs/SOURCES.md).
 
@@ -72,7 +72,7 @@ sibling course. See [`../notes/00-exam-focus.md`](../notes/00-exam-focus.md).
 | algorithmics bullets | no O-notation item, no approximation item | **+ "Basic running time analysis: O-notation, asymptotic order of growth"**, **+ "Approximation"** | unchanged |
 | network-flow bullet | "Max**Cut** versus Min**Flow**" | "Max**Cut** versus Min**Flow**" | **"MaxFlow versus MinCut"** (typo fixed) |
 | complexity / quantum bullets | as now | as now | as now |
-| TUWEL course linked | yes | yes | **not yet** |
+| TUWEL course linked | yes | yes | not on 2026-09-27; **yes, course 83986, by 2026-10-09** |
 | date rows | 3 (Mon 13-18 + Wed 13-18 Zemanek from 28.10; Fri 09-18 SR 127) | 2 (Wed 15-19 Zemanek; Fri 09-18 SR 384) | **9 rows / 48 single appointments**, four different lecture halls |
 | exams | **two written papers, 07.02.2025 and 07.03.2025, 10:00-12:00, FAV HS 1** | (page shows the 2026W rows — TISS serves current exam entries on every semester tab) | 11.12.2026, 21.01.2027, retake 09.03.2027 |
 | examination modalities | "Exercises + written exam" | "Exercises + written exam" | "Exercises + written exam" |
@@ -168,7 +168,9 @@ Two observations that matter.
 
 ## Examination modalities
 
-"Exercises + written exam". The weighting is not published.
+"Exercises + written exam". TISS publishes no weighting; the TUWEL organization
+slides do (30 exercise points + 70 exam points, see below and
+[`../notes/00-exam-focus.md`](../notes/00-exam-focus.md)) [S62].
 
 ## Exams
 
@@ -194,3 +196,24 @@ Retake groups (registration 25.01.2027 09:00 – 04.03.2027 09:00):
 
 **066 558 QIST: mandatory, 1st semester.** Literature: "No lecture notes are
 available." Language: English.
+
+## TISS against TUWEL, 2026-10-09
+
+The TUWEL course [S62] has a schedule page (one row per session, with topic and
+room) and organization slides. Where they disagree with this page, TUWEL is the
+lecturers' own plan and the safer guide; TISS rows are room bookings.
+
+| item | TISS (this page) | TUWEL [S62] |
+|---|---|---|
+| first meeting, 01.10 | EI 11 HS, 15:00-17:00 in the date row, 14:00 in the prose | EI 10 HS, 14:00-17:00, "Kickoff + Algorithmics 1" |
+| Friday 02.10 | booked (EI 10, first of six Fridays) | no session; the Friday series starts 09.10 |
+| Zemanek holds (Mon 13:00-18:00, Wed 15:00-19:00, to 27.01) | booked all semester | used only 09.11-30.11 (quantum computing) and 14.12-18.12; no session in Zemanek after 18.12 |
+| exam lengths | 3 h slots (09:00-12:00, 14:00-17:00) | 90 minutes each inside those slots |
+| retake, 09.03.2027 | row 13:00-18:00; title "14:00-18:00"; group labels "March 6" | organization slides: 14:00-16:00 and 16:00-18:00 (90 + 90 min); schedule page: 13:30-15:30 and 15:45-18:00 (180 min). TUWEL confirms 9 March, not 6 March |
+| Complexity (quantum) 3, 09.12 | SR FAV 01 A booked 13:00-16:00 | time 13:00-16:00, but the room cell holds an unrelated "Nov 13, 14:00-15:00, ..." entry |
+| lecturers | Chen, Egly, Fermüller, Pichler | same four on the slides; the algorithmics decks are Chen's |
+| weighting | not stated | 6 sheets x 5 points + 2 exams x 35 points, see note 00 |
+
+The two retake readings on TUWEL disagree with each other as well as with
+TISS. Both start no earlier than 13:30, so the 13:00 room booking is the
+outer bound.

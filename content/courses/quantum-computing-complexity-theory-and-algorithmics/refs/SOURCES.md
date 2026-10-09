@@ -8,9 +8,10 @@ page or file was fetched; TISS and VoWi change, so re-check before an exam.
 source below is either a public web page (cited) or a PDF whose licence is
 absent or reserved (cited, with a fetch command in
 [`fetch-sources.sh`](fetch-sources.sh) so it can be downloaded for personal use
-into the git-ignored `vendor/`). No TUWEL material was fetched; TUWEL needs a
-login and is not ours to copy. See [`README.md`](README.md) for the licence
-reasoning.
+into the git-ignored `vendor/`). TUWEL material needs a login and is not ours
+to copy: since 2026-10-09 the TUWEL course is read for facts and cited as
+[S62], in our own words, and nothing from it is vendored. See
+[`README.md`](README.md) for the licence reasoning.
 
 **The two things to internalise before reading further.**
 
@@ -864,20 +865,48 @@ Recorded because the reasons are the useful part.
   already the registered substitute for the missing script. Nothing was added
   on top of them.
 
+## The 2026W TUWEL course (added 2026-10-09; cite-only)
+
+### S62: 192.043 TUWEL course 83986, 2026W (login, cite-only)
+
+- What was read on 2026-10-09: the course page and its section list; the
+  "Organization slides" (5 pages, by Chen); the page "Lecture and exercise
+  schedule" (last modified 01.10.2026); the algorithmics decks by Chen, "Warm
+  Up" (chapter 1, 35 pages), chapter 2 (graphs, 33 pages) and chapter 3
+  (greedy, 40 pages), plus three annotated copies of chapters 1 and 2; the
+  exercise section (group registration and six hand-in activities); the
+  announcement forum (empty).
+- Where: TUWEL, course 83986, linked from the TISS API record [S1] since
+  2026-10-09. Login only, so no URL beyond the course id is given.
+- **Licence: all rights reserved. Not vendored, cite-only.** Nothing from the
+  slides or pages is copied into this wiki beyond names of topics; the notes
+  summarise in their own words.
+- Used for: the grading scheme, exercise format and exam lengths in
+  [`../notes/00-exam-focus.md`](../notes/00-exam-focus.md), the 2026W schedule
+  and block order in [`lecture-notes-map.md`](lecture-notes-map.md), the
+  TISS-against-TUWEL comparison in [`../docs/tiss.md`](../docs/tiss.md), and the
+  2026W lecture sections and cards of notes A01-A03. Where it disagrees with an
+  inference elsewhere in this folder, S62 wins.
+- Caveat: the six hand-in activities still carry 2025 dates (October 2025 to
+  January 2026). They show the sheet structure but no 2026 deadline.
+
+---
+
 ## What could not be sourced
 
 - **Which lecturer teaches which block is not stated anywhere public.** The
   attribution in `lecture-notes-map.md` is an inference from S5 (shared slots
   with Chen and Pichler), S12/S15/S20 (Egly owns the quantum material) and
   S7/S14 (Pichler owns the complexity material). **Fermüller's role is
-  genuinely unknown** [S13].
-- **The grading split of 192.043.** TISS says only "Exercises + written exam"
-  [S1]. The sibling courses' splits (192.036: 15/25/60 [S15]; 194.027:
-  10/15/25/50/5 [S22]; 192.165: exercises + oral, both must pass [S7]) are the
-  only numbers available and they disagree with each other.
+  genuinely unknown** [S13]. Update 2026-10-09: the algorithmics decks are
+  Chen's [S62]; the other blocks have no material yet.
+- ~~**The grading split of 192.043.**~~ Resolved 2026-10-09 by the
+  organization slides [S62]: see [`../notes/00-exam-focus.md`](../notes/00-exam-focus.md).
+  TISS itself still says only "Exercises + written exam" [S1].
 - **Any past paper of 192.043**, in any year [S24].
-- **The lecture-by-lecture schedule**: the 48 single appointments carry no
-  topic or lecturer, only room and time [S1].
+- ~~**The lecture-by-lecture schedule.**~~ Resolved 2026-10-09: TUWEL has a
+  schedule page with topic and room per slot [S62]; TISS's 48 single
+  appointments still carry no topic [S1].
 - **Free practice material for the RAM model.** 192.042's subject list names
   *random access machines* [S4] and 192.042 merged into 192.043 for 2026W. Every
   free complexity source found — S26, S31, S59, S60 — works with Turing machines
