@@ -31,9 +31,8 @@ content/courses/<slug>/
     fetch-sources.sh  optional: re-fetches vendored files
     ...               vendored files, only when their licence allows it
   docs/
-    tiss.md           transcription of the public TISS course page, dated
-    tiss-api.xml      raw record from https://tiss.tuwien.ac.at/api/course/<nr without dot>-<semester>
-    tiss-api.md       readable rendering of that record
+    tiss.md           the public TISS course page in our own words, dated; do not
+                      commit the raw API record (TU Wien's prose)
   src/
     py/               Python reference code, tests in test_*.py (pytest)
     c/ or cpp/        optional, with a Makefile that has a `test` target
