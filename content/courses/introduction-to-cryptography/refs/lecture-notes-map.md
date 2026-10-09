@@ -36,44 +36,52 @@ other section number above agrees with S53.
 
 The **midterm** of 3 December 2025 [S13] covered lectures 1-8; its last question
 is on authenticated encryption, K&L sec. 5.2, which is the end of lecture 8.
-In 2026W the midterm is **Wed 18 November 2026**, two weeks earlier in the term,
-after only seven lecture Thursdays [S1]. Expect it to stop at lecture 7 (notes
-01-06) at most; MACs and AE (note 07) are on it only if the decks move faster
-than in 2024W.
+In 2026W the midterm is **Wed 18 November 2026** and, by the 2026W schedule
+below, covers the lectures up to modes of operation and CCA (notes 01-06);
+MACs and AE (note 07) come after it [S58].
 
-## 2026W calendar, projected onto the decks
+## 2026W lecture order (announced in lecture 1)
 
-TISS lists 15 lecture Thursdays and 13 exercise sessions for 2026W [S1]; there
-is no 2026W deck or syllabus in public, so the deck column is the **2024W order
-[S8] laid onto the 2026W dates, one deck per Thursday**. It is a projection,
-not an announcement. 2026W has one more lecture slot than there are decks; where
-it falls (a split deck, a Q&A, revision) is unknown.
+The 2026W schedule slide of lecture 1 [S58] replaces the earlier projection of
+the 2024W decks onto the 2026W dates. Two dates carry two lectures, the second
+one in the exercise slot (15:00); there is no lecture on 15.10.2026, and the
+last Thursday before each exam is a Q&A session instead of new material [S58].
 
-| date | projected deck | our notes | exam |
-|---|---|---|---|
-| Thu 01.10.2026 | 1 historical ciphers | 01 | midterm |
-| Thu 08.10.2026 | 2 perfect secrecy | 02 | midterm |
-| Thu 15.10.2026 | 3 block ciphers (Andreeva) | 03 | midterm |
-| Thu 22.10.2026 | 4 stream ciphers, computational security | 04 | midterm |
-| Thu 29.10.2026 | 5 PRGs, reductions | 05 | midterm |
-| Thu 05.11.2026 | 6 PRFs, CPA | 06 | midterm |
-| Thu 12.11.2026 | 7 modes, CCA | 06 | midterm |
-| **Wed 18.11.2026** | **midterm**, 12:00-14:00, Audimax | 00, 01-06, 13 | |
-| Thu 19.11.2026 | 8 MACs, AE, secure sessions | 07 | final |
-| Thu 26.11.2026 | 9 hash functions (Andreeva) | 08 | final |
-| Thu 03.12.2026 | 10 number theory | 09 | final |
-| Thu 10.12.2026 | 11 DLog, DH, PKE | 09, 10 | final |
-| Thu 17.12.2026 | 12 DHIES, RSA, signatures | 10, 11 | final |
-| Thu 07.01.2027 | 13 RSA-FDH, Schnorr, DSA, PKI | 11, 12 | final |
-| Thu 14.01.2027 | 13a TLS, outro (no exercise session that day) | 12 | final |
-| Thu 21.01.2027 | spare slot | 13 | final |
-| **Fri 29.01.2027** | **final**, 10:00-12:00, Audimax | 00, 07-13 | |
-| Fri 26.02.2027 | retake of either partial exam | | |
+| date | 2026W lecture (slide title, paraphrased) | 2024W deck | our notes | exam |
+|---|---|---|---|---|
+| Thu 01.10.2026 | 1 admin, introduction, historical ciphers | 1 | 01 | midterm |
+| Thu 08.10.2026 | 2 modern cryptography, one-time pad | 2 | 02 | midterm |
+| Thu 08.10.2026, 15:00 | 3 block and stream ciphers I (Andreeva; block ciphers only) | 3 | 03 | midterm |
+| Thu 22.10.2026 | block and stream ciphers II | 3, 4 | 03, 04 | midterm |
+| Thu 22.10.2026, 15:00 | computational security, pseudorandomness | 4, 5 | 04, 05 | midterm |
+| Thu 29.10.2026 | security proofs, PRFs, CPA security | 5, 6 | 05, 06 | midterm |
+| Thu 05.11.2026 | modes of operation, CCA security | 7 | 06 | midterm |
+| Thu 12.11.2026 | Q&A, no new material | | 00, 13 | |
+| **Wed 18.11.2026** | **midterm**, 12:00-14:00, Audimax | | 01-06, 13 | |
+| Thu 19.11.2026 | MACs, authenticated encryption | 8 | 07 | final |
+| Thu 26.11.2026 | hash functions | 9 | 08 | final |
+| Thu 03.12.2026 | number theory | 10 | 09 | final |
+| Thu 10.12.2026 | discrete log, public-key encryption | 11 | 09, 10 | final |
+| Thu 17.12.2026 | DHIES, RSA, signatures | 12 | 10, 11 | final |
+| Thu 07.01.2027 | Schnorr signatures, DSA, PKI | 13 | 11, 12 | final |
+| Thu 14.01.2027 | TLS | 13a | 12 | final |
+| Thu 21.01.2027 | Q&A | | 00, 13 | |
+| **Fri 29.01.2027** | **final**, 10:00-12:00, Audimax | | 07-13 | |
+| Fri 26.02.2027 | retake of one of the two exams, 12:00-14:00, Audimax | | | |
 
-Whether the final also examines midterm material is not stated on TISS; the
-2025W final is not public, so this is open. The nine assignments fall on the 13
-exercise Thursdays (08.10.2026 to 21.01.2027, not 14.01.2027) in an unknown
-rhythm, and their sheets are in TUWEL only.
+Rows from 22.10.2026 on are announced titles; the 2024W-deck and note columns
+for them are our guess until the lecture is held. Lecture 3 was announced as
+"block and stream ciphers I" but covered block ciphers only, so stream ciphers
+(K&L 7.1, note 04) presumably open the 22.10.2026 lecture [S58].
+
+The lecturer stated that the **final covers only the second half** of the
+course [S58]; this settles the question the 2026-09-22 version of this file
+left open.
+
+**Exercise sheets.** Nine sheets: sheet 1 is a TUWEL quiz due Fri 09.10.2026;
+sheets 2-9 are discussed in class on 15.10, 29.10, 05.11, 12.11, 03.12, 17.12,
+07.01 and on 14.01 or 21.01.2027 (still to be decided) [S58]. Sheets 1-5 fall
+before the midterm.
 
 ## Syllabus topics with no note
 
@@ -102,12 +110,14 @@ and expect recognition.
 
 | Label | Statement | Note |
 |---|---|---|
-| Def. 1.2 | syntax of a private-key encryption scheme | 01 |
+| Def. 1.2 | syntax of a private-key encryption scheme (the 2026W slide cites sec. 1.2, no definition number [S58]) | 01 |
 | — | Kerckhoffs' principle (1883): Enc and Dec are public | 01 |
+| Ex. 2.1 | shift cipher on one letter: every ciphertext has probability 1/26 whatever the message distribution [S58] | 02 |
 | Def. 2.3 | perfect secrecy | 02 |
-| Lemma 2.7 | perfect secrecy ⟺ perfect indistinguishability | 02 |
+| Lemma 2.7 | perfect secrecy ⟺ perfect indistinguishability (not in 2026W lectures 1-3 [S58]) | 02 |
 | Thm 2.10 | the one-time pad is perfectly secret | 02 |
-| Thm 2.12 | Shannon: characterisation and the \|K\| ≥ \|M\| bound | 02 |
+| Thm 2.11 | every perfectly secret scheme has \|K\| ≥ \|M\| [S58] | 02 |
+| Thm 2.12 | Shannon: characterisation for \|M\| = \|K\| = \|C\| | 02 |
 | Def. 3.4 | negligible function | 04 |
 | Def. 3.14 | pseudorandom generator | 05 |
 | Thm 3.16 | the pseudo-one-time pad is EAV-secure if G is a PRG | 05 |

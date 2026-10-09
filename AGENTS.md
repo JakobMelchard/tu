@@ -84,7 +84,8 @@ rename or reuse one. Math with `$...$` works.
   it out.
 - Date every TISS transcription (`Transcribed from <url> on YYYY-MM-DD`).
 - No copyrighted material copied in; cite-only where the licence forbids
-  redistribution. No content from TUWEL or other login-protected pages.
+  redistribution. Never copy material from TUWEL or other login-protected pages
+  (slides, recordings, transcripts, sheets); citing it in your own words is fine.
 - No personal data: no registration status, accounts, grades, timetable plans.
 - No solutions to currently graded assignments.
 - Tests must not need network access.
