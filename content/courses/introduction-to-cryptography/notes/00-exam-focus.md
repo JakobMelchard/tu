@@ -2,7 +2,8 @@
 
 Built from four past papers and two sample solution sets (read on 2026-09-22)
 and the 2026W TISS page and API record (re-read on 2026-10-07,
-[`../docs/tiss.md`](../docs/tiss.md), `../docs/tiss-api.md`).
+[`../docs/tiss.md`](../docs/tiss.md), `../docs/tiss-api.md`), updated on
+2026-10-09 with what lectures 1-3 of 2026W announced [S58].
 Read this before deciding how much time to give a topic.
 
 > Every date below is this semester's (2026W). TUWEL (course 84457) is where
@@ -28,6 +29,25 @@ From the TISS page and API record, both as of 2026-10-07 [S1]:
 - Presence is not mandatory; lectures and exercise sessions are recorded.
 - Closed book, judging by M25 [S7]; nothing in the 2026W record says otherwise.
 
+Made precise in lecture 1 [S58]:
+
+- **The hurdle is split.** The midterm needs at least half of sheets 1-5, the
+  final at least half of all nine. Someone who misses the midterm hurdle but
+  reaches half over all nine sheets may sit the retake as their midterm.
+- **Ticks are checked.** Points are assigned after the uploads are checked and
+  some problems may weigh more than others, so aim above half rather than at
+  it. A wrong answer is not penalised if it is a serious attempt; an empty or
+  token one is.
+- **Upload format.** Start each subproblem on a new page; handwritten is fine.
+- **Grade rule restated.** At least 50 % on average over the two exams, so one
+  exam may be failed; total 20 % exercises, 40 % midterm, 40 % final.
+- **All exams closed book**, no electronic devices.
+- **The final covers only the second half** of the course.
+- Sheet 1 is a short TUWEL quiz on lecture 1, due Fri 09.10.2026; sheets 2-9
+  are discussed in the Thursday sessions (dates in
+  [`../refs/lecture-notes-map.md`](../refs/lecture-notes-map.md)). The
+  sessions are voluntary, recorded, and have no compulsory presentations.
+
 | what | when | where | apply in TISS |
 |---|---|---|---|
 | Lecture | Thu 12:00-14:00, 01.10.2026 to 21.01.2027 (15 dates, none on 24.12 and 31.12) | FAV Hörsaal 1 | n/a |
@@ -42,37 +62,48 @@ application on or after 23.10.2026 and do not leave it to the evening of
 
 ## The 2026W plan
 
-**What each exam covers.** TISS does not say. The working assumption: the
-midterm covers the lectures before it, the final the rest, as in 2025W, where
-the 3 December midterm covered lectures 1-8 [S13]. Seven lectures fall before
-18.11.2026 (01.10 to 12.11). If 2026W follows the 2024W slide order [S8] one
-lecture per week, that is lectures 1-7, i.e. up to modes of operation and CCA,
-and lecture 8 (MACs, AE) lands on 19.11, the day after. The 2026W order is not
-published, so check each week which deck was actually given and move the
-boundary with it. Whether the final also re-examines the first half is not
-stated either; plan for the second half and keep the first-half true/false
-material warm.
+**What each exam covers.** The lecturer said in lecture 1 that the final
+covers only the second half of the course [S58]. The 2026W schedule [S58]
+puts six lectures before the midterm (two each on 08.10 and 22.10, none on
+15.10) and a Q&A session on 12.11, so the midterm runs up to modes of
+operation and CCA, and MACs and AE (19.11) open the final's half.
 
-| lecture (2024W order) | date if one per week | note | exam |
+| 2026W lecture | date | note | exam |
 |---|---|---|---|
-| 1 historical ciphers | 01.10 | [01](01-historical-ciphers.md) | midterm |
-| 2 perfect secrecy | 08.10 | [02](02-perfect-secrecy.md) | midterm |
-| 3 block ciphers | 15.10 | [03](03-block-ciphers.md) | midterm |
-| 4 computational security | 22.10 | [04](04-computational-security.md) | midterm |
-| 5 pseudorandomness | 29.10 | [05](05-pseudorandomness.md) | midterm |
-| 6 PRFs, CPA encryption | 05.11 | [06](06-private-key-encryption.md) | midterm |
-| 7 modes, CCA | 12.11 | [06](06-private-key-encryption.md) | midterm |
-| 8 MACs, AE, sessions | 19.11 | [07](07-macs-and-ae.md) | final (midterm only if given earlier) |
-| 9 hash functions | 26.11 | [08](08-hash-functions.md) | final |
-| 10 number theory | 03.12 | [09](09-number-theory.md) | final |
-| 11 DLog, public-key crypto | 10.12 | [09](09-number-theory.md), [10](10-key-exchange-pke.md) | final |
-| 12 DHIES, RSA, signatures | 17.12 | [10](10-key-exchange-pke.md), [11](11-digital-signatures.md) | final |
-| 13 RSA-FDH, Schnorr, DSA, PKI | 07.01 | [11](11-digital-signatures.md), [12](12-tls-and-pki.md) | final |
-| 13a TLS, outro | 14.01 | [12](12-tls-and-pki.md) | final |
-| (spare date) | 21.01 | | |
+| admin, historical ciphers | 01.10 | [01](01-historical-ciphers.md) | midterm |
+| modern cryptography, one-time pad | 08.10 | [02](02-perfect-secrecy.md) | midterm |
+| block (and stream) ciphers I, Andreeva | 08.10, 15:00 | [03](03-block-ciphers.md) | midterm |
+| block and stream ciphers II | 22.10 | [03](03-block-ciphers.md), [04](04-computational-security.md) | midterm |
+| computational security, pseudorandomness | 22.10, 15:00 | [04](04-computational-security.md), [05](05-pseudorandomness.md) | midterm |
+| security proofs, PRFs, CPA security | 29.10 | [05](05-pseudorandomness.md), [06](06-private-key-encryption.md) | midterm |
+| modes of operation, CCA security | 05.11 | [06](06-private-key-encryption.md) | midterm |
+| Q&A | 12.11 | | |
+| MACs, authenticated encryption | 19.11 | [07](07-macs-and-ae.md) | final |
+| hash functions | 26.11 | [08](08-hash-functions.md) | final |
+| number theory | 03.12 | [09](09-number-theory.md) | final |
+| discrete log, public-key encryption | 10.12 | [09](09-number-theory.md), [10](10-key-exchange-pke.md) | final |
+| DHIES, RSA, signatures | 17.12 | [10](10-key-exchange-pke.md), [11](11-digital-signatures.md) | final |
+| Schnorr signatures, DSA, PKI | 07.01 | [11](11-digital-signatures.md), [12](12-tls-and-pki.md) | final |
+| TLS | 14.01 | [12](12-tls-and-pki.md) | final |
+| Q&A | 21.01 | | |
 
-Fifteen lecture dates for fourteen decks, so there is one date of slack; any
-shift moves the rows above.
+The note column for lectures not yet held is our mapping from the titles;
+[`../refs/lecture-notes-map.md`](../refs/lecture-notes-map.md) has the 2024W
+decks they correspond to.
+
+**Hints from the 2026W lectures so far** [S58]:
+
+- The exam tests whether you can do what the exercises train, not recall; the
+  lecturer's advice is to solve the sheets yourself, since checking a solution
+  is not the same as finding one (lecture 1).
+- For written schemes, pseudocode at the level of the one-time pad slide
+  (Gen, Enc, Dec as short loops, then a correctness line) is the expected
+  formality (lecture 2).
+- Lecture 2 builds the Thm 2.10 proof line by line from four probability facts
+  and asks students to redo it slowly on their own: expect to reproduce that
+  style of argument (note 02).
+- Lecture 3: understand AES's four round operations rather than memorise them;
+  the AES key schedule was explicitly skipped (note 03).
 
 **Midterm, Wed 18.11.2026** (30 points if it matches M25). Notes 01-06 plus
 note 13 problems 1 and 2 and its attack procedure. From the past papers:
@@ -85,8 +116,8 @@ note 13 problems 1 and 2 and its attack procedure. From the past papers:
 - an explicit attack on a contrived private-key scheme (M25 q3b, F20 1a, F20
   3a; note 03 Q5, note 06 Q4-Q5);
 - a reduction to a PRG or PRF (note 04 worked example, note 05 worked example,
-  note 13 problem 1); if MACs are in, M25 q4 (note 07 Q1) and M25 q5 (note 07
-  Q2).
+  note 13 problem 1). M25 q4 (note 07 Q1) and q5 (note 07 Q2) are on MACs,
+  which in 2026W come after the midterm [S58]; save them for the final.
 
 Two-week run-in: work through M25 under exam conditions around 04.11, redo the
 weak spots, and do it again from a blank page on 16.11.
@@ -101,11 +132,10 @@ Christmas (no lectures 24.12 and 31.12) is the time to do F24 and F23 in full.
 partials must be positive, a weak midterm can be repaired here, but only if the
 final went well enough; do not plan on it.
 
-**Exercise hurdle.** Half the points over 9 sheets. Six exercise sessions fall
-before the midterm (08.10 to 12.11) and seven after; TISS does not say whether
-the hurdle is checked against the sheets so far at each exam or against all
-nine. Treat it as a running requirement: reach half on every sheet up to
-12.11, so the midterm cannot be blocked.
+**Exercise hurdle.** Half of sheets 1-5 for the midterm, half of all nine for
+the final [S58]. Sheets 1-5 are the TUWEL quiz and the sessions of 15.10,
+29.10, 05.11 and 12.11, so the midterm hurdle is decided before 18.11. Treat
+it as a running requirement and stay above half on every sheet.
 
 ## The papers
 
@@ -126,8 +156,9 @@ uploads are the whole public record. Three caveats, all important:
 1. **M25 is the only midterm that exists.** Midterms were introduced in 2025W;
    before that there was a single final [S3, S5]. Any midterm has a sample of
    exactly one to learn from. The 2026W midterm sits **two weeks earlier in
-   the term** than M25 did (18.11.2026 against 3 December), so expect it to
-   stop at lecture 7 rather than 8 (see the plan above).
+   the term** than M25 did (18.11.2026 against 3 December) and stops before
+   MACs and AE [S58], so M25's MAC questions (q4, q5) are final material this
+   year.
 2. **F20 is from the old 3 ECTS VO** [S6]. Same lecturer, same book, no exercise
    component; treat its questions as topically right and weight-wise irrelevant.
 3. **Only M25's part 1 has an official answer key.** Every other answer below is
@@ -144,7 +175,8 @@ uploads are the whole public record. Three caveats, all important:
   third of the paper, and the cheapest points on it.
 - Then **four to six multi-part questions**, each 2-6 points, of three kinds:
   *state a definition*, *give a reduction*, *give an explicit attack*.
-- M25 was **"closed book"** [S7]. Nothing in the 2026W record suggests otherwise.
+- M25 was **"closed book"** [S7], and all three 2026W exams are closed book
+  too [S58].
 - **Grading changed for 2026W.** Up to 2025W it was 50 % exercises + 50 % exams,
   the VoWi formula `%G = 0.5*%E + 0.5*%U` [S5]. 2026W is **20 % exercises +
   40 % midterm + 40 % final** with the half-the-exercise-points hurdle (rules
