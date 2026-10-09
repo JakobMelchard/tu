@@ -172,3 +172,166 @@ Built with `setup.py`/scikit-build or `c++ -O3 -shared -fPIC $(python3 -m pybind
 5. **You want to distribute a code that links to a GPL library and to numpy. What are your options?** Distribute under GPL (source included), or replace the GPL dependency with a permissively licensed one, or keep the code internal (GPL obligations trigger on distribution). numpy (BSD) requires only its notice.
 
 Code: `src/sh/git_workflow.sh`, `src/sh/sanitizers.sh` + `buggy_sample.cpp`, `src/cpp/CMakeLists.txt` (`make -C src/cpp cmake`), `src/cpp/Makefile`, `src/cpp/common.hpp` (`CHECK`), `src/py/test_*.py`. Sources: [S8] [S13] [S34] [S36] [S37] [S38] [S39] [S40] [S41].
+
+## 2026W, part 1: what Toth's decks cover (08.10-29.10) [S45]
+
+This topic is **part 1** of the 2026W course, taught first. The four decks
+(all dated 08.10.2026) are summarised here in our own words; the sections above
+already cover most tools in more depth.
+
+- **Deck 1, introduction.** Practices as answers to recurring problems ("runs
+  on my machine", "how do you build this", "it worked half a year ago"):
+  version control, documentation, testing, code review, CI/CD, infrastructure
+  as code, modularity, automation, isolation. Every tool trades capability for
+  added complexity. A development environment is judged on ease of setup,
+  reproducibility, portability, flexibility, performance, automation, isolation
+  and shareability. For HPC the cluster runs Linux and the languages are
+  compiled; tuned libraries (BLAS: OpenBLAS, MKL) are hard to beat. Recommended
+  setups: WSL on Windows, a VirtualBox VM on macOS, a current Ubuntu LTS.
+  Virtual machines emulate hardware for a guest OS; containers share the host
+  kernel and isolate with kernel features (cgroups), with less overhead. Make
+  and Ninja execute a dependency graph; meta-build tools (CMake, Meson,
+  autotools) generate their input and find compilers and dependencies.
+  Language interoperability comes as foreign function interfaces (ctypes,
+  `extern "C"`), bindings (pybind11, nanobind, Boost.Python) or embedding an
+  interpreter. Documentation generators: Doxygen, MkDocs, Sphinx. AI coding
+  agents are an LLM plus tools in a feedback loop; allowed in the course, but
+  the exercises are meant to train you.
+- **Deck 2, details.** Git terminology (repository, commit, branch and tip,
+  merge with two parents unless fast-forward, checkout, HEAD, staged,
+  untracked, remote, fetch versus pull, fork), objects named by SHA-1, the
+  three-step merge (common ancestor, two changesets, conflicts only where both
+  touch the same lines), `pull --rebase` to avoid merge commits, stash as a
+  stack, tags, submodules, `.gitattributes`, and the rule never to rewrite
+  shared history. Containers: Dockerfile, build context, image, layer,
+  container, volume, registry; each `RUN`/`COPY` adds a cached layer, so
+  install and clean up in one `RUN`; Podman is largely Docker-compatible;
+  Toolbx for interactive development containers. GitLab CI/CD: a pipeline of
+  jobs in stages or as a DAG, defined in YAML, run by runners with shell,
+  Docker, VM or Kubernetes executors; artifacts pass output on, caches reuse
+  it; `rules`/`workflow`, hidden template jobs, anchors and `extends`,
+  variables, parent-child and multi-project pipelines, registries and Pages.
+  CMake: case-insensitive commands but case-sensitive variables, scopes and
+  `PARENT_SCOPE`, cache variables set with `-D`, out-of-source builds,
+  generators (`-G Ninja`), targets with properties, find and utility modules,
+  `configure_file`, CTest, CDash, `install`, CPack, and a list of good
+  practices (a `cmake_minimum_required` range, stable project-specific target
+  names, `${CMAKE_COMMAND} -E` for portable file operations).
+- **Deck 3, workshop.** Team presentations of 5 minutes plus 2 for questions
+  in three blocks with breaks; finish the task, complete reviews, merge, and
+  submit on TUWEL.
+- **Deck 4, licences.** A short history of copyright (Statute of Anne, Berne
+  Convention), the utilitarian and the author's-rights rationale, rights that
+  arise automatically with the work, exceptions (ideas are not protected, only
+  their expression). Unpublished licence means unusable code. Open source as a
+  development model versus free software as a movement: the FSF's four freedoms
+  (run, study and change, redistribute, distribute modified versions) and the
+  OSI's ten-point Open Source Definition. Licence types: proprietary, copyleft
+  (GPL family; LGPL allows dynamic linking; duties trigger on distribution) and
+  permissive (MIT, BSD, Apache: attribution and warranty disclaimer only), plus
+  informal licences, Creative Commons for non-software works, and the public
+  domain.
+
+### Cards
+
+```card id=nssc-se-practices
+Name four software development practices and the problem each addresses.
+---
+Version control (it worked half a year ago), documentation and build automation (how do you build this?), testing and CI (did my change break something?), isolation with containers or VMs (installing tools broke my other project). Also code review, IaC, modularity.
+```
+
+```card id=nssc-se-vm-vs-container
+Virtual machine vs container.
+---
+A VM runs a guest OS on virtual hardware provided by the host (hardware support reduces the overhead). A container shares the host kernel and is isolated by OS features such as cgroups: lighter, faster, the usual choice for reproducible environments.
+```
+
+```card id=nssc-se-meta-build
+What is a meta-build tool, with examples?
+---
+A tool that generates the input for a build tool (Make, Ninja) and detects compilers, finds dependencies, handles platforms, testing and packaging. Examples: CMake, Meson, autotools.
+```
+
+```card id=nssc-se-interop
+Three ways to call code across languages.
+---
+Foreign function interface (ctypes, `extern "C"`), language bindings that wrap an API (pybind11, nanobind, Boost.Python), and embedding an interpreter in a binary (Python inside C++). Lower-level ways usually perform better.
+```
+
+```card id=nssc-se-coding-agent
+What makes an AI coding assistant an "agent"?
+---
+An LLM coupled to tools (read and edit files, run commands, fetch resources) in a feedback loop, with the context holding user input, files and history.
+```
+
+```card id=nssc-se-git-states
+States of a file in a git working tree.
+---
+Untracked (unknown to git), modified (changed since the last commit), staged (in the index, will go into the next commit), committed (stored in the repository). HEAD marks the commit you compare against and build on.
+```
+
+```card id=nssc-se-merge
+How does git merge two branches?
+---
+Find the common ancestor, compute each branch's changes since then, combine them in a merge commit with both tips as parents. Changes to the same lines conflict and need manual resolution. If only one branch moved, it is a fast-forward and no merge commit is made.
+```
+
+```card id=nssc-se-fetch-pull
+`git fetch` vs `git pull`, and what `pull --rebase` changes.
+---
+Fetch downloads the remote branch's objects and head. Pull = fetch + merge. With `--rebase` your local commits are replayed on top of the upstream instead, avoiding a merge commit.
+```
+
+```card id=nssc-se-history-rule
+The one rule about rewriting git history (amend, rebase).
+---
+Never rewrite history you have already shared: everyone who built on it would have to resolve the conflicts again.
+```
+
+```card id=nssc-se-docker-layers
+Dockerfile: what creates a layer, and how do you keep images small?
+---
+Each `RUN` or `COPY` instruction makes a new cached layer. Install and clean up in the same `RUN`, since files deleted in a later layer still take space in the earlier one.
+```
+
+```card id=nssc-se-ci-pipeline
+GitLab CI/CD: pipeline, job, runner.
+---
+A pipeline (YAML in the repo) is a set of jobs with dependencies, in stages or as a DAG, triggered e.g. per commit. A job is a list of commands in a defined environment; runners execute jobs (shell, Docker, VM, Kubernetes executors). Artifacts pass files to later jobs, caches reuse data across pipelines.
+```
+
+```card id=nssc-se-cmake-vars
+CMake: which names are case sensitive, and what is a cache variable?
+---
+Commands are case insensitive, variables are case sensitive. Cache variables hold user input, live in `CMakeCache.txt` and are set with `cmake -D VAR=value`; a normal variable of the same name can hide them.
+```
+
+```card id=nssc-se-out-of-source
+Why use out-of-source builds in CMake?
+---
+Generated files stay out of the source tree, and one source tree can have several build directories with different configurations (debug, release, other compilers).
+```
+
+```card id=nssc-se-four-freedoms
+The FSF's four freedoms of free software.
+---
+0 run the program for any purpose; 1 study and change it; 2 redistribute copies; 3 distribute modified versions. "Free as in speech, not as in beer": free software may be sold.
+```
+
+```card id=nssc-se-licence-types
+Proprietary, copyleft, permissive: what distinguishes them?
+---
+Proprietary: object code only, source a trade secret. Copyleft (GPL, LGPL, MPL): derived works must be distributed under the same terms. Permissive (MIT, BSD, Apache): may be included in closed software, requires attribution and keeps the warranty disclaimer.
+```
+
+```card id=nssc-se-gpl-trigger
+When do the GPL's obligations apply?
+---
+On distribution. Using or modifying GPL code inside an organisation without distributing it creates no obligation; distributing a combined work requires GPL with source. The LGPL relaxes this for dynamic linking.
+```
+
+```card id=nssc-se-no-licence
+What may you do with published code that carries no licence?
+---
+Almost nothing beyond reading it: copyright applies automatically at creation, so without a licence you have no right to copy, modify or redistribute.
+```

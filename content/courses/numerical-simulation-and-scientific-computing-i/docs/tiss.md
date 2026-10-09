@@ -1,6 +1,6 @@
 # 360.242 Numerical Simulation and Scientific Computing I — TISS page (2026W)
 
-Transcribed from https://tiss.tuwien.ac.at/course/courseDetails.xhtml?courseNr=360242&semester=2026W on 2026-09-21. **Re-fetched and verified unchanged on 2026-09-22**, Re-read in a logged-in browser on **2026-09-27**: no field changed; together with the 2025W and 2024W offerings (see the comparison table below). Content sections are in tiss-api.md; the sources are registered in [../refs/SOURCES.md](../refs/SOURCES.md) as S1 (2026W), S2 (2025W), S3 (2024W).
+Transcribed from https://tiss.tuwien.ac.at/course/courseDetails.xhtml?courseNr=360242&semester=2026W on 2026-09-21. **Re-fetched and verified unchanged on 2026-09-22**, Re-read in a logged-in browser on **2026-09-27**: no field changed. Re-read on **2026-10-09** (page and API record): no field changed; the TUWEL course (id 83671) is compared with this page in the last section; together with the 2025W and 2024W offerings (see the comparison table below). Content sections are in tiss-api.md; the sources are registered in [../refs/SOURCES.md](../refs/SOURCES.md) as S1 (2026W), S2 (2025W), S3 (2024W).
 
 VU, 3.0 h, 6.0 ECTS, presence. TUWEL course available from 05.10.2026. Mode of examination: written and oral.
 
@@ -94,3 +94,19 @@ run every winter term since 2019W.
 "Mode of examination" reads **"Written and oral"**, while both rows of the Exams
 table say **written**. This is true in 2024W, 2025W and 2026W alike. It is not
 resolved by anything public; see [../notes/00-exam-focus.md](../notes/00-exam-focus.md).
+The TUWEL course describes only a written exam (below).
+
+## TISS against TUWEL, 2026-10-09
+
+TUWEL [S45] (course page, course information slides v2026-10-08, announcement
+of 09.10.2026) against this page:
+
+| item | TISS | TUWEL [S45] |
+|---|---|---|
+| lecturers | five: Manstetten, Schöberl, Toth, Garcia Villalba Navaridas, Moriche Guerrero | four on the slides, one per part: Toth, Manstetten, Schöberl, Moriche Guerrero. Garcia Villalba is not named |
+| time | Thu 13:00-16:00 | Thu 13:15-16:00 |
+| first date | weekly from 01.10.2026 | plan starts 08.10.2026; nothing listed for 01.10 |
+| last date | 28.01.2027 | last planned session 14.01.2027 (part 4 last Q&A, closing part 1 lecture) |
+| examination | "Written and oral" in the mode field; both sittings written | written exam only: closed book, 180 min, about 15 questions; one retake, second attempt counts |
+| modalities | hand-ins with a minimum threshold for the exam | four exercises at 10 points each (40 %), each must reach 5; exam 60 points (60 %), must reach 50 % |
+| group size | "group homework" | 4 on the TUWEL page and on deck 1; 3-4 on the course information slides; the 09.10 announcement asks single students to join 2- or 3-person groups |
