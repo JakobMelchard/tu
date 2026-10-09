@@ -287,7 +287,7 @@ False. Only Dec must be deterministic. CPA-secure schemes need randomised Enc.
 ```card id=crypto-l1-kerckhoffs
 Kerckhoffs' principle, and why?
 ---
-Enc and Dec are public, only the key is secret. Keys are easier to replace than algorithms, one public algorithm serves everyone, and public algorithms get reviewed by everyone.
+Enc and Dec are public; the secrecy of $m$ given $c$ rests only on the key. Why: keys are easier to keep secret (algorithms leak, e.g. by reverse engineering); a key is easier to replace than a scheme; and public schemes can be standardised (compatibility, public scrutiny).
 ```
 
 ```card id=crypto-l1-scytale
@@ -326,22 +326,10 @@ Vigenère: definition, and how to break it with known period $\ell$.
 Polyalphabetic: position $i$ shifted by key letter $i \bmod \ell$. Split the ciphertext into $\ell$ residue classes; each is a shift cipher, break each by frequency analysis.
 ```
 
-```card id=crypto-l1-period
-How to find the Vigenère period $\ell$ when unknown?
----
-Kasiski (distances between repeated ciphertext fragments share $\ell$ as a factor) or the index of coincidence. Not covered in detail in the lecture.
-```
-
 ```card id=crypto-l1-poly-immune
 True or false: unlike monoalphabetic ciphers, polyalphabetic ciphers are immune to frequency analysis.
 ---
 False. Each residue class mod the period is monoalphabetic and falls to frequency analysis.
-```
-
-```card id=crypto-l1-chosen-plaintext
-Why is a polyalphabetic cipher weak against a chosen-plaintext attacker?
----
-One chosen message encrypted reveals the key directly from the ciphertext, no statistics needed.
 ```
 
 ```card id=crypto-l1-vernam
