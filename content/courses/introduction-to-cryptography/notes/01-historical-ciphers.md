@@ -293,7 +293,7 @@ Enc and Dec are public; the secrecy of $m$ given $c$ rests only on the key. Why:
 ```card id=crypto-l1-scytale
 Scytale: what kind of cipher, what is the key, how is it broken?
 ---
-Transposition: letters are moved, not replaced. Key = number of columns (rod circumference), at most $n$ candidates: try them all. Letter frequencies stay exactly English.
+Transposition: letters are moved, not replaced. Key = rod circumference = number of rows of the grid; at most $n$ candidates (divisors of the length): try them all. Letter frequencies stay exactly English.
 ```
 
 ```card id=crypto-l1-transposition-vs-substitution
@@ -378,6 +378,54 @@ It shifts by 13 and $13 \equiv -13 \pmod{26}$, so encrypting twice shifts by 26,
 Does the one-time pad hide the message length?
 ---
 No: the ciphertext is as long as the message. No scheme can hide the length of arbitrarily long messages.
+```
+
+```card id=crypto-l1-correctness-vs-security
+Is the identity scheme ($\mathsf{Enc}_k(m)=m$, $\mathsf{Dec}_k(c)=c$) correct? How do you check correctness?
+---
+Yes, correct (and completely insecure): correctness and security are separate properties. Check by plugging Enc into Dec: $\mathsf{Dec}_k(\mathsf{Enc}_k(m))=m$ must hold for every key and every message. One key or message where it fails is a counterexample, e.g. Dec adding $k$ instead of subtracting works only for $k\in\{0,13\}$.
+```
+
+```card id=crypto-l1-invariant
+Method: how do you show that a ciphertext lets you tell message $m_0$ from $m_1$ with certainty?
+---
+Find an invariant: a property $P$ of the message that can be read off every ciphertext, whatever the key. If $P(m_0)\ne P(m_1)$, the ciphertext decides. Shift: differences $m_i-m_j \bmod 26$. Transposition: the multiset of letters.
+```
+
+```card id=crypto-l1-indistinguishable-proof
+Method: how do you prove that a ciphertext does NOT determine which of $m_0$, $m_1$ was sent?
+---
+Show keys $k, k'$ with $\mathsf{Enc}_k(m_0)=\mathsf{Enc}_{k'}(m_1)$: that ciphertext is consistent with both. Strongest form: for every key $k$ give a matching $k'$ (work with variables for the key, then check with numbers).
+```
+
+```card id=crypto-l1-scytale-transpose
+Why is the Scytale a transposition cipher?
+---
+Write the message row by row into a grid with $k$ rows, read it out column by column: the ciphertext is the transpose of the matrix. Letters only change positions. Other transpositions (rail fence, routes, keyed columnar) use other rearrangements but all keep the letter multiset.
+```
+
+```card id=crypto-l1-transposition-never-secret
+Can a transposition cipher be perfectly secret, even with a random permutation per message?
+---
+No. Every transposition keeps the multiset of letters, so messages with different letters are always distinguishable. More possible permutations only make brute force harder.
+```
+
+```card id=crypto-l1-vigenere-vs-vernam
+How are Vigenère and Vernam related, and which way does security transfer?
+---
+Vigenère with period $\ell$ is Vernam with the restriction $k_{i+\ell}=k_i$. Every Vigenère key is a Vernam key, so whatever Vigenère cannot distinguish, Vernam cannot either. Not the other way: the repetition is what attacks exploit.
+```
+
+```card id=crypto-l1-vernam-any-to-any
+Why does a Vernam ciphertext say nothing about the message?
+---
+For any message $m$ and any ciphertext $c$ of the same length, the key $k_i=c_i-m_i \bmod 26$ maps $m$ to $c$, and exactly one key does. With a uniform key every message is equally likely for every ciphertext.
+```
+
+```card id=crypto-l1-permutation-25
+Chosen plaintext against a substitution with $\ell$ permutations of a 26-letter alphabet: how many letters reveal the key?
+---
+$25\ell$. Each permutation is a bijection, so 25 known images fix the 26th. Place each of 25 letters once in every residue class mod $\ell$ (for $\ell=2$: AABB...YY, 50 letters).
 ```
 
 ```card id=crypto-l1-lesson
