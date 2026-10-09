@@ -1,5 +1,5 @@
 bin/
-bin-asan/
+bin-*/
 build/
 *.o
 *.pcm

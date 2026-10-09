@@ -37,13 +37,24 @@ jobs:
             echo "::endgroup::"
           done
           exit $fail
+      # the C++23 reference code is written against clang 21 + libc++ (Apple clang 21 on
+      # macOS); Ubuntu's clang 18 and libstdc++ lack parts of it, so use LLVM 21 from apt.llvm.org
+      - name: LLVM 21
+        run: |
+          wget -qO- https://apt.llvm.org/llvm.sh | sudo bash -s 21
+          sudo apt-get install -y -qq libc++-21-dev libc++abi-21-dev
+          mkdir -p "$HOME/bin" && ln -s /usr/bin/clang++-21 "$HOME/bin/clang++" && ln -s /usr/bin/clang-21 "$HOME/bin/clang"
+          echo "$HOME/bin" >> "$GITHUB_PATH"
       - name: make test per course
+        timeout-minutes: 45
+        env:
+          STDLIB: -stdlib=libc++
         run: |
           fail=0
           for m in content/courses/*/src/c/Makefile content/courses/*/src/cpp/Makefile; do
             [ -f "$m" ] && grep -q '^test:' "$m" || continue
             echo "::group::$m"
-            make -C "$(dirname "$m")" test || fail=1
+            timeout 600 make -C "$(dirname "$m")" test || { echo "::error::$m failed or timed out"; fail=1; }
             echo "::endgroup::"
           done
           exit $fail
