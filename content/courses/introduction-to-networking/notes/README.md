@@ -6,6 +6,8 @@ Ordered index. Each note has definitions, header layouts as tables, a worked exa
 
 **Update 2026-10-05:** lecture 1 happened and the course site publishes slides [S36]. [00 Exam focus](00-exam-focus.md) has a new "What lecture 1 stated" section (exam rules, A4 sheet, team, literature, per-lecture topics); [01](01-foundations-and-governance.md) gains history, access networks and registry details from the three decks. Check the course site after each lecture for new slides.
 
+**Update 2026-10-09:** the course page was reorganised and now marks the five exercise releases: 19.10, 09.11, 23.11, 14.12.2026 and 11.01.2027 [S36]. That refutes the earlier derivation from TISS (09.11, 16.11, 07.12, 11.01, 18.01); [00 Exam focus](00-exam-focus.md) has the corrected table and the new topic order.
+
 **Start with [00 Exam focus](00-exam-focus.md).** 191.030 is new in 2026W and has no previous offering, no VoWi page and no public past paper [S2], [S5], [S7] — that note says what is known about the examination, what is inferred, and how much to trust each.
 
 **Then know what note 12 is not.** 191.030 publishes no practice material at all, so [12 Substitute practice set](12-substitute-practice-set.md) is built from **other courses' free material**, condensed and labelled: MIT 6.02 Fall 2012 under CC BY-NC-SA 4.0 [S34], CNP3 (Bonaventure, UCLouvain) under CC BY-SA 3.0 [S35], and our own problems for the four topics — governance, DNSSEC, Telnet, multicast — for which no free exercise set exists. Every problem carries its origin in brackets. Nothing in these notes is a TU Wien past paper, because there is none.

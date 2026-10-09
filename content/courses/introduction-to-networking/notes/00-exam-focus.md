@@ -32,32 +32,39 @@ IETF/IANA/ICANN/RIR/NIC) and the course page. This replaces the earlier
 | contact | teaching@internet.wien (slides); the site footer also lists contact@internet.wien |
 | team | Tobias Fiebig and **Daniel Wagner** (DE-CIX; IRR/RPKI, botnets, DDoS) as co-lecturers; **Charmaine Taus** as team assistant and student contact point. **No tutors, no PhD students**, "things might take a bit longer" |
 | exams | both **in person, closed book, 2 h**, registration required; allowed: **one hand-written, two-sided DIN A4 sheet** (confirms the inference from S33) |
-| exercises | five, **voluntary**, 20 pts each, after lectures 7, 9, 16, 19, 22 |
+| exercises | five, **voluntary**, 20 pts each, after lectures 7, 9, 16, 19, 22; the course page (re-read 2026-10-09) marks them on 19.10, 09.11, 23.11, 14.12.2026 and 11.01.2027 |
 | grades | 240+ = 1, 211-240 = 2, 181-210 = 3, 150-180 = 4. The overlap at 240 is unchanged on the slides: still assume 241+ |
 | oral exam | only if you took both exams, or one exam and all five exercises, and still have under 150 |
-| workload | 180 h: about 2 h lecture + 1 h exercises + 8.25 h self-study per week over 15 weeks, plus 11.25 h exam preparation |
+| workload | 180 h: about 2 h lecture + 1 h exercises + 8.25 h self-study per week over 15 weeks, plus 11.25 h exam preparation. This disagrees with TISS, whose ECTS breakdown is 150 h with 100 h for the five exercises [S1] |
 | literature | background reading **Kurose and Ross, 8th ed.** (inspiration; order, content, depth differ, "significant additional material") and Peterson and Davie, *Computer Networks: A Systems Approach* |
 | learning objectives | the five TISS outcomes, unchanged |
 | "protocols and details matter" | "precisely parsing an IP header is harder than you might think": expect bit-level questions on headers |
 | explicitly out of scope | applications (Instagram), AI, containers (Docker), front end, **security and privacy (Tor, VPNs)** |
 
-Lecture-by-lecture topics from the course page (slot = Monday; lecture numbers
-as in the section above):
+Lecture-by-lecture topics from the course page, **re-read 2026-10-09** [S36].
+The page was reorganised since 2026-10-05: governance moved to 12.10, Ethernet
+to 19.10, IPv6 to 09.11, and the five exercises are now marked. "Topic #" is
+the running number of the topic lines, which is what "after lecture N" counts
+(see below).
 
-| date | topics |
-|---|---|
-| 05.10 | organization; networked communication; Internet governance (IETF, IANA, ICANN, RIR, NIC) |
-| 12.10 | Layer 1 refresher; forwarding paradigms; Ethernet I |
-| 19.10 | Ethernet II; IPv4/IPv6; ARP/NDP |
-| 09.11 | static routing; link-state algorithms; OSPF, IS-IS |
-| 16.11 | distance-vector algorithms; Babel, BGP |
-| 23.11 | ICMP/ICMPv6; UDP |
-| 30.11 | **mid-term** |
-| 07.12 | TCP introduction and mechanisms |
-| 14.12 | congestion control; socket programming |
-| 11.01 | DNS, DNSSEC; Telnet |
-| 18.01 | unicast/anycast/multicast; Q&A |
-| 25.01 | **final** |
+| date | topic # | topics | exercise released |
+|---|---|---|---|
+| 05.10 | 1-2 | organization; networks and protocols | |
+| 12.10 | 3-5 | Internet governance (IETF, IANA, ICANN, RIR, NIC); Layer 1 refresher; forwarding paradigms | |
+| 19.10 | 6-8 | Ethernet I (Layer 2); Ethernet II (hubs, switches, VLANs); IPv4 intro (classes, CIDR, ARP) | **1** (with topic 7) |
+| 09.11 | 9-12 | IPv6, NDP; static routing, longest prefix match; link state; OSPF, IS-IS | **2** (with topic 9) |
+| 16.11 | 13-14 | distance vector; Babel, BGP | |
+| 23.11 | 15-16 | ICMP/ICMPv6; UDP | **3** (with topic 16) |
+| 30.11 | | **mid-term** | |
+| 07.12 | 17-18 | TCP: handshake; acknowledgements and loss recovery | |
+| 14.12 | 19-20 | congestion control; socket programming, Nagle | **4** (with topic 19) |
+| 11.01 | 21-23 | DNS I; DNS II (DNSSEC); Telnet | **5** (with topic 22) |
+| 18.01 | 24 | unicast, anycast, multicast; "ask me anything" | |
+| 25.01 | | **final** (the site's date field for this row reads 2026-10-05, a typo; its heading and TISS say 25.01.2027) | |
+
+Only lecture 1 has slides on the site, and of its decks only the first two
+are still online: the governance deck listed on 2026-10-05 now returns 404 and
+its topic moved to 12.10.
 
 What this changes against the inferred scope: the mid-term covers everything
 through UDP (L1, Ethernet, IP, ARP/NDP, routing incl. **IS-IS, Babel and
@@ -86,12 +93,12 @@ exams and registration unchanged since the 2026-09-22 transcription):
 
 | part | when | points |
 |---|---|---|
-| Exercise 1 | after lecture 7 | 20 |
-| Exercise 2 | after lecture 9 | 20 |
+| Exercise 1 | after lecture 7, released 19.10.2026 [S36] | 20 |
+| Exercise 2 | after lecture 9, released 09.11.2026 [S36] | 20 |
+| Exercise 3 | after lecture 16, released 23.11.2026 [S36] | 20 |
 | **Mid-term exam** | after lecture 14, **Mon 30.11.2026 12:00–14:00**, in the lecture room | **100** |
-| Exercise 3 | after lecture 16 | 20 |
-| Exercise 4 | after lecture 19 | 20 |
-| Exercise 5 | after lecture 22 | 20 |
+| Exercise 4 | after lecture 19, released 14.12.2026 [S36] | 20 |
+| Exercise 5 | after lecture 22, released 11.01.2027 [S36] | 20 |
 | **Final exam** | after lecture 24, **Mon 25.01.2027 12:00–14:00** | **100** |
 | | | **300** |
 
@@ -127,24 +134,27 @@ appointments, all Mon 12:00–14:00 in EI 11 HS [S1]:
 
 (26.10 and 02.11 are skipped, as is the 21.12–04.01 break.)
 
-Twelve slots × 2 h = the 24 h of the breakdown, so **"lecture N" counts
-teaching hours, not Mondays**: slot *k* delivers lectures 2*k*−1 and 2*k*. That
-mapping lands both exams exactly where TISS schedules them — lecture 14 is slot
-7 = 30.11 and lecture 24 is slot 12 = 25.01 — which is strong evidence it is
-right. Under it, the exercises come out at:
+**Correction, 2026-10-09.** An earlier version of this note inferred that
+"lecture N" counts teaching hours (slot *k* = lectures 2*k*−1 and 2*k*) and put
+the exercises at 09.11, 16.11, 07.12, 11.01 and 18.01. The course site now marks
+the exercises itself [S36], and that inference was wrong: "lecture N" is the
+running number of the **topic lines** on the course page, two to four per
+Monday. Counting them, lectures 7, 9, 16, 19 and 22 fall exactly on the marked
+exercises:
 
-| exercise | after lecture | ⇒ released around |
+| exercise | after lecture (topic) | released [S36] |
 |---|---|---|
-| 1 | 7 | 09.11.2026 |
-| 2 | 9 | 16.11.2026 |
-| 3 | 16 | 07.12.2026 |
-| 4 | 19 | 11.01.2027 |
-| 5 | 22 | 18.01.2027 |
+| 1 | 7, Ethernet II | Mon 19.10.2026 |
+| 2 | 9, IPv6 and NDP | Mon 09.11.2026 |
+| 3 | 16, UDP | Mon 23.11.2026 |
+| 4 | 19, congestion control | Mon 14.12.2026 |
+| 5 | 22, DNSSEC | Mon 11.01.2027 |
 
-**Inferred, not stated.** But note the shape it implies and plan for it: two
-exercises in three weeks before the mid-term, then three in the last seven
-teaching weeks, at 20 h each against a 100 h budget. Exercises 4 and 5 land in
-January on top of final-exam revision.
+The exam placements fit less neatly: the mid-term is "after lecture 14"
+(Babel, BGP on 16.11) but topics 15-16 are taught on 23.11, before it; the final
+follows topic 24 on 18.01. Deadlines for the exercises are not published yet.
+The shape to plan for: three exercises before the mid-term, the first one in
+week 3, and two more in December and January on top of final revision.
 
 ### Registration deadlines [S1]
 

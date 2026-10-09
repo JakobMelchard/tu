@@ -422,6 +422,11 @@ flagged in the note where it is used.
   `…_01-03-ietf-iana-icann-rir-nic.pdf`.
 - Retrieved: 2026-10-05. Access: public, no login. Only lecture 1 has slides;
   later rows list topics only.
+- Re-read 2026-10-09: topics regrouped across the Mondays, the five exercise
+  releases are now marked (19.10, 09.11, 23.11, 14.12.2026, 11.01.2027), the
+  governance deck `…_01-03-ietf-iana-icann-rir-nic.pdf` returns 404 (its topic
+  moved to 12.10), and the final-exam row carries the date 2026-10-05 under the
+  heading 2027-01-25 (a typo on the page).
 - Licence: none stated, so **not committed**. The PDFs and their text
   extraction sit in the git-ignored `vendor/slides/` (fetch with the three URLs
   above). Notes paraphrase and cite them.

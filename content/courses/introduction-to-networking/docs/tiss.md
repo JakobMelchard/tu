@@ -60,12 +60,17 @@ The weekly series therefore **skips 26.10.2026, 02.11.2026, 21.12.2026,
 28.12.2026 and 04.01.2027**, which the "05.10.2026 - 25.01.2027" range alone
 does not show. Slots 7 and 12 are the two exam dates below.
 
-Twelve slots x 2 h = the 24 h of lectures in the ECTS breakdown, so the
-examination description's "after lecture N" counts **teaching hours, not
-Mondays**: slot k delivers lectures 2k-1 and 2k. That mapping puts lecture 14 in
-slot 7 (30.11.2026) and lecture 24 in slot 12 (25.01.2027), exactly where the
-two exams are scheduled. Under it the five exercises fall after 09.11.2026,
-16.11.2026, 07.12.2026, 11.01.2027 and 18.01.2027 (derived, not stated by TISS).
+~~Twelve slots x 2 h = the 24 h of lectures in the ECTS breakdown, so the
+examination description's "after lecture N" counts teaching hours: slot k
+delivers lectures 2k-1 and 2k, and the exercises fall after 09.11, 16.11,
+07.12.2026, 11.01 and 18.01.2027.~~ **Refuted 2026-10-09** by the course site
+[S36]: "lecture N" counts the topic lines of the course page (two to four per
+Monday), and the site marks the five exercises at 19.10, 09.11, 23.11, 14.12.2026
+and 11.01.2027, which are topic lines 7, 9, 16, 19 and 22. See
+[`../notes/00-exam-focus.md`](../notes/00-exam-focus.md).
+
+Re-read on **2026-10-09** (page and API record): no date, room, exam or
+registration field changed.
 
 ## Examination modalities
 
