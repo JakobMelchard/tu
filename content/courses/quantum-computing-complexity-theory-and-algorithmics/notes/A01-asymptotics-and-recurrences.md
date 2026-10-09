@@ -148,6 +148,113 @@ Now compare orders: which is bigger, $n^{\log_4 3}$ or $\sqrt{n}$? $\log_4 3 = \
 
 5. **Explain in one paragraph what "amortised $O(1)$" means and why a dynamic array satisfies it.** Over any sequence of $k$ appends starting from empty, the total work is $O(k)$, even though single appends that trigger a resize cost $\Theta(\text{current size})$. Resizes happen at sizes $1, 2, 4, \ldots$ and copy $1 + 2 + \cdots + 2^{\lfloor \log k \rfloor} < 2k$ elements in total; the other appends cost $O(1)$ each.
 
+## 2026W lectures: the warm-up deck (01.10 and 05.10) [S62]
+
+Chen's first deck, "Warm-Up", merges Kleinberg and Tardos chapters 1 and 2
+[S25]. What it covers beyond the sections above, in our words:
+
+- **Stable matching** (KT 1.1). $n$ men and $n$ women each rank the other side.
+  A pair $\{u,w\}$ outside a matching $M$ **blocks** $M$ if $u$ is unmatched or
+  prefers $w$ to his partner, *and* $w$ is unmatched or prefers $u$ to hers. $M$
+  is stable if no pair blocks it. The deck's version of Gale-Shapley keeps a
+  queue of free men; the man at the front proposes to the best woman left on
+  his list, she takes him (sending any current partner back to the queue), and
+  every man she ranks below him is deleted from her list and she from his. It
+  ends with a stable perfect matching, proved by contradiction, and runs in
+  $O(n^2)$ with rank arrays (position of each person in each list), the inverse
+  rank arrays, partner arrays and a per-man pointer to his next candidate.
+- **Stable roommates** (one set of $2n$ people) need not have a stable
+  matching: three people who rank each other cyclically and all rank a fourth
+  last always produce a blocking pair. Whether one exists is still decidable in
+  polynomial time (Irving 1985).
+- **Five representative problems** (KT 1.2), all variants of (weighted)
+  independent set: interval scheduling (greedy, $O(n\log n)$), weighted
+  interval scheduling (dynamic programming, $O(n\log n)$), bipartite matching
+  (via max flow; general graphs by Edmonds' blossom algorithm), independent set
+  (NP-complete) and competitive facility location (PSPACE-complete).
+- **Fibonacci as the first example.** The naive recursion recomputes the same
+  subproblems; its call tree has between $2^{n/2}$ and $2^n$ nodes, exactly
+  $\Theta(F_n) = \Theta(2^{0.694n})$. Filling a table $f[0..n]$ instead takes
+  $O(n)$ additions.
+- **Polynomial time as a scaling property.** There are constants $c,d>0$ with
+  running time at most $cN^d$ on every input of size $N$: doubling the input
+  slows the algorithm by at most a constant factor. Exceptions both ways
+  (useless polynomial algorithms, simplex and backtracking regex matchers that
+  are exponential but used) are named.
+- **Running-time zoo** (KT 2.4): $O(n)$ maximum and merging two sorted lists,
+  $O(n\log n)$ sorting and the largest gap between time stamps, $O(n^2)$ closest
+  pair by brute force, $O(n^3)$ pairwise set disjointness, $O(n^k)$
+  $k$-independent set for constant $k$ (there are $\binom nk\le n^k/k!$
+  subsets), $O(2^n n^2)$ maximum independent set by brute force.
+
+### Cards
+
+```card id=qc-alg1-blocking-pair
+Stable matching: when does a pair $\{u,w\}\notin M$ block the matching $M$?
+---
+When both would rather be together: $u$ is unmatched or prefers $w$ to $M(u)$, and $w$ is unmatched or prefers $u$ to $M(w)$. $M$ is stable if no pair blocks it.
+```
+
+```card id=qc-alg1-gale-shapley
+Gale-Shapley (propose and reject), one round.
+---
+Take a free man $u$; he proposes to the best woman $w$ still on his list. If $w$ is matched, her partner becomes free again; $w$ is matched to $u$, and every man she ranks below $u$ is deleted from her list (and she from theirs). Repeat until no free man has a non-empty list.
+```
+
+```card id=qc-alg1-gs-runtime
+Running time of Gale-Shapley with $n$ men and $n$ women, and what makes it possible?
+---
+$O(n^2)$: at most $n^2$ proposals, each $O(1)$ with a queue of free men, rank arrays (where $x$ stands in $v$'s list), partner arrays and for each man a pointer to the next woman to try.
+```
+
+```card id=qc-alg1-roommates
+Does every stable roommates instance have a stable matching?
+---
+No. Three people who rank each other cyclically and all rank a fourth last: whoever is paired with the fourth forms a blocking pair with someone. Existence is still decidable in polynomial time (Irving 1985).
+```
+
+```card id=qc-alg1-five-problems
+The five representative problems and their complexity.
+---
+Interval scheduling: greedy $O(n\log n)$. Weighted interval scheduling: DP $O(n\log n)$. Bipartite matching: via max flow (general graphs: Edmonds' blossom). Independent set: NP-complete. Competitive facility location: PSPACE-complete.
+```
+
+```card id=qc-alg1-fib-naive
+Running time of the naive recursive Fibonacci algorithm, and the fix.
+---
+$T(n)=T(n-1)+T(n-2)+c$, so $T(n)=\Theta(F_n)=\Theta(2^{0.694n})$; the tree has between $2^{n/2}$ and $2^n$ nodes. Storing results in a table $f[0..n]$ gives $O(n)$ additions.
+```
+
+```card id=qc-alg1-poly-time
+Definition: an algorithm runs in polynomial time.
+---
+There are constants $c,d>0$ such that on every input of size $N$ it takes at most $cN^d$ steps. Equivalently: doubling the input size slows it down by at most a constant factor ($2^d$).
+```
+
+```card id=qc-alg1-big-o
+Define $T(n)=O(f(n))$, $\Omega(f(n))$ and $\Theta(f(n))$.
+---
+$O$: there are $c>0$, $n_0\ge 0$ with $T(n)\le c f(n)$ for all $n\ge n_0$. $\Omega$: same with $T(n)\ge c f(n)$. $\Theta$: both.
+```
+
+```card id=qc-alg1-typecheck
+Why is "every comparison sort needs at least $O(n\log n)$ comparisons" a meaningless statement?
+---
+$O$ is an upper bound, so "at least $O(\cdot)$" says nothing. A lower bound is written with $\Omega$: $\Omega(n\log n)$ comparisons.
+```
+
+```card id=qc-alg1-log-poly-exp
+How do logarithms, polynomials and exponentials compare asymptotically?
+---
+$\log n = O(n^x)$ for every $x>0$; $n^d = O(r^n)$ for every $r>1$ and $d>0$. The base of a logarithm does not matter: $O(\log_a n)=O(\log_b n)$.
+```
+
+```card id=qc-alg1-k-indset
+Brute-force running time for "is there an independent set of size $k$" with constant $k$?
+---
+Check all $\binom nk \le n^k/k!$ subsets, each in $O(k^2)$: $O(k^2 n^k/k!) = O(n^k)$. Polynomial for fixed $k$, but useless for $k=17$.
+```
+
 ## Code
 
 `src/py/algorithmics/divide_conquer.py`: `master_theorem(a, b, d)` returns the case and the asymptotic order for $T(n) = aT(n/b) + \Theta(n^d)$; `merge_sort` is the running instance of $T(n) = 2T(n/2) + n$ and the tests time it against $n \log n$. Amortised union-find is `UnionFind` in `src/py/algorithmics/greedy.py`.

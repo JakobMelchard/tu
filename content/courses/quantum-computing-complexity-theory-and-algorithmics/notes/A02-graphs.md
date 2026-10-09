@@ -152,6 +152,93 @@ Now add edge 4–5. Both in $L_2$: odd cycle. LCA of 4 and 5 in the BFS tree is 
 
 5. **State and prove the invariant that makes Dijkstra correct; where do you use that lengths are non-negative?** See Results. When $v$ is extracted with key $\mathrm{dist}[v]$, any path $P$ to $v$ must leave $S$ at some first edge $(x, y)$, and $\ell(P) \ge d(s,x) + \ell(x,y) + \ell(\text{rest}) \ge \mathrm{dist}[y] + 0 \ge \mathrm{dist}[v]$. The "$+\,0$" is where $\ell \ge 0$ is used.
 
+## 2026W lecture: chapter 2, graphs (07.10) [S62]
+
+Chen's chapter-2 deck is Kleinberg and Tardos chapter 3 [S25] and matches the
+sections above: representations, paths, cycles and trees, BFS and DFS,
+connected components, bipartiteness, strong connectivity, DAGs and
+topological order. Points it stresses, in our words:
+
+- **Representation costs.** Adjacency matrix: $\Theta(n^2)$ space, edge test
+  $\Theta(1)$, listing all edges $\Theta(n^2)$. Adjacency list: $\Theta(n+m)$
+  space, edge test $O(\deg u)$, listing all edges $\Theta(n+m)$. Real graphs
+  are sparse ($m=O(n)$), so "linear time" for a graph algorithm means
+  $O(n+m)$ with adjacency lists.
+- **Trees.** For an undirected graph on $n$ vertices, any two of "connected",
+  "acyclic" and "$n-1$ edges" imply the third.
+- **BFS** builds layers $L_0=\{s\}, L_1, \dots$; in a BFS tree the endpoints
+  of every graph edge lie in the same or adjacent layers. With adjacency lists
+  it runs in $O(n+m)$ because $\sum_v \deg v = 2m$. DFS also runs in $O(n+m)$
+  but need not find shortest paths.
+- **Bipartiteness.** $G$ is bipartite iff it has no odd cycle. Test: run BFS;
+  if no edge joins two vertices of the same layer, colour even layers one way
+  and odd layers the other. If an edge $\{x,y\}$ lies inside layer $j$, the
+  paths up to their lowest common ancestor in layer $i$ close a cycle of length
+  $2(j-i)+1$.
+- **Strong connectivity.** $G$ is strongly connected iff some (any) vertex $s$
+  reaches every vertex and every vertex reaches $s$; check with one BFS from
+  $s$ in $G$ and one in the reversed graph, $O(n+m)$.
+- **DAGs.** A directed graph has a topological order iff it is a DAG. Every
+  DAG has a source (walk backwards along in-arcs; without a source the walk
+  repeats a vertex and closes a cycle), so peel off sources one by one. With
+  in-arc counters and a set of current sources this takes $O(n+m)$.
+
+### Cards
+
+```card id=qc-alg2-matrix-vs-list
+Adjacency matrix vs adjacency list: space, edge test, listing all edges.
+---
+Matrix: $\Theta(n^2)$ space, edge test $\Theta(1)$, all edges $\Theta(n^2)$. List: $\Theta(n+m)$ space, edge test $O(\deg u)$, all edges $\Theta(n+m)$. Sparse graphs ($m=O(n)$) favour lists.
+```
+
+```card id=qc-alg2-tree-two-of-three
+Characterise trees among undirected graphs on $n$ vertices.
+---
+Any two of these imply the third: $G$ is connected; $G$ has no cycle; $G$ has $n-1$ edges.
+```
+
+```card id=qc-alg2-bfs-layers
+BFS tree property for an edge $\{x,y\}$ of $G$?
+---
+The BFS levels of $x$ and $y$ differ by at most 1.
+```
+
+```card id=qc-alg2-bfs-time
+Why does BFS run in $O(n+m)$ with adjacency lists?
+---
+Each vertex enters the queue at most once, and scanning $u$ costs $O(\deg u)$; $\sum_u \deg u = 2m$, since every edge is counted once at each end.
+```
+
+```card id=qc-alg2-bipartite
+When is a graph bipartite, and how do you test it in linear time?
+---
+Iff it has no odd-length cycle. Run BFS from $s$: if no edge joins two vertices of the same layer, colour layers by parity; otherwise that edge plus the two tree paths to the lowest common ancestor form an odd cycle of length $2(j-i)+1$.
+```
+
+```card id=qc-alg2-strong-connectivity
+How do you decide in $O(n+m)$ whether a digraph is strongly connected?
+---
+Pick any $s$. BFS from $s$ in $G$ and BFS from $s$ in $G^{\mathrm{rev}}$ (all arcs reversed). Strongly connected iff both reach every vertex, because $u\to s\to v$ then exists for all $u,v$.
+```
+
+```card id=qc-alg2-dag-topo
+Which directed graphs have a topological order?
+---
+Exactly the DAGs. A cycle would need its lowest-indexed vertex to come after its predecessor on the cycle; conversely every DAG has a source, which can go first, and induction finishes.
+```
+
+```card id=qc-alg2-dag-source
+Why does every DAG have a source (a vertex with no in-arc)?
+---
+If every vertex had an in-arc, walking backwards along in-arcs from any vertex would never stop, so some vertex repeats and the walk between its two visits is a directed cycle.
+```
+
+```card id=qc-alg2-topo-time
+How is topological sorting done in $O(n+m)$?
+---
+Count the remaining in-arcs of each vertex and keep the set of vertices with count 0. Repeatedly remove one, output it, and decrement its out-neighbours' counts, adding those that reach 0.
+```
+
 ## Code
 
 `src/py/algorithmics/graphs.py`: `bfs(adj, s)` (returns dist and parent), `dfs(adj)` (discovery/finish times and edge classification), `connected_components(adj)`, `is_bipartite(adj)` (returns colouring or an odd cycle), `topological_sort(adj)` (Kahn; raises on a cycle), `dijkstra(adj, s)` with a binary heap. C++ reference of the same Dijkstra with `std::priority_queue`: `src/cpp/dijkstra.cpp`.

@@ -17,6 +17,14 @@ Written exam 27.01.2027 10:00-13:00, GM 2 Radinger
 (registration 19.10.2026-22.01.2027 14:00); substitute 05.03.2027 11:00-14:00,
 FH HS 6 [S1]. TUWEL opens 05.10.2026 [S1].
 
+**Update 2026-10-09** [S45]: TUWEL is read (cite-only). The course runs in four
+parts, one lecturer each, in a different order from these notes (map in
+[`../refs/lecture-notes-map.md`](../refs/lecture-notes-map.md)); grading is
+40 % exercises (each part at least half) and 60 % written exam (at least half),
+see [00 Exam focus](00-exam-focus.md). Part 1 (software engineering) is note
+[10](10-software-engineering-for-scientific-computing.md), which now carries
+the 2026W deck summaries and drill cards.
+
 Every claim carries an `[S<n>]` citation into
 [`../refs/SOURCES.md`](../refs/SOURCES.md); claims that could not be sourced are
 marked `(unsourced: …)` in place. Changes are recorded in

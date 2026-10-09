@@ -27,6 +27,24 @@ problems drawn from **substitute** sources - [S8], [S43] and [S44] - because
 this course sets none of its own. Its last table names the topics for which no
 free practice material exists at all: **6, 9 and 10**.
 
+## The 2026W teaching order (TUWEL, read 2026-10-09) [S45]
+
+The course is not taught in TISS's order. It runs as four parts, one lecturer
+and one exercise each; the TUWEL section texts name the content of each part.
+Our notes stay numbered by the TISS list; this table maps them.
+
+| part | lecturer | content named on TUWEL [S45] | our notes |
+|---|---|---|---|
+| 1 Software engineering tools and practices (08.10-29.10) | Toth | Linux environments, build systems and CMake, git and GitLab, CI/CD, containers, language interoperability (pybind11), documentation generators (Sphinx), licences, AI coding assistants | 10 |
+| 2 Foundations of HPC (29.10-19.11) | Manstetten | computer architectures, serial and C++ optimisation, floating-point representation and arithmetic, shared memory parallelisation (OpenMP), direct solvers and linear algebra libraries | 01, 02, 05, 07, 08 |
+| 3 Numerical methods for ODEs (19.11-10.12) | Schöberl | ODEs and simple time-stepping, from the IntroSC Jupyter book [S8] | 03, 04 (no ODE note yet) |
+| 4 Sparse linear algebra and shared memory parallelism (10.12-14.01) | Moriche Guerrero | linear systems from PDEs (Poisson, Helmholtz), Jacobi, Gauss-Seidel, Krylov methods and GMRES, multigrid, shared-memory parallelisation | 04, 05, 07 |
+
+Topics 6 (random numbers and Monte Carlo) and 9 (mesh generation and
+visualisation) appear in no part description on TUWEL. They are still on the
+TISS list [S1], so the notes keep them; *(inference)* they are the least
+likely to be examined.
+
 ## How the sources cover the ten topics
 
 `●` = a source we treat as authoritative for that topic. `○` = supporting.

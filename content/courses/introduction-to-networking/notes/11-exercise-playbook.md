@@ -12,9 +12,9 @@
 > exercise sheet exists**: 191.030 is new in 2026W and has no previous
 > offering [S2], no VoWi page [S7] and no public material [S5]. No TUWEL course
 > is linked from TISS (2026-09-27). See [`00-exam-focus.md`](00-exam-focus.md)
-> for the derived release dates.
+> for the release dates (from the course page since 2026-10-09 [S36]).
 
-The five exercises (after lectures 7, 9, 16, 19, 22; 20 points each, 100 h budget, 100 of the 300 points) [S1] were described, until the removal above, as *describe packet traces*, *derive topologies from partial information*, and *explain TCP behaviour in a scenario*. This note is the procedure for each, plus the tool cheat sheet (`src/sh/tools_cheatsheet.sh`). Note the arithmetic from [`00-exam-focus.md`](00-exam-focus.md): the exercises alone cannot pass the course (100 < 150), but they are half the distance. Derived release dates (lecture $N$ is in slot $\lceil N/2 \rceil$, not stated by TISS): 09.11, 16.11, 07.12.2026, 11.01, 18.01.2027; the first two fall before the mid-term on 30.11.
+The five exercises (after lectures 7, 9, 16, 19, 22; 20 points each, 100 h budget, 100 of the 300 points) [S1] were described, until the removal above, as *describe packet traces*, *derive topologies from partial information*, and *explain TCP behaviour in a scenario*. This note is the procedure for each, plus the tool cheat sheet (`src/sh/tools_cheatsheet.sh`). Note the arithmetic from [`00-exam-focus.md`](00-exam-focus.md): the exercises alone cannot pass the course (100 < 150), but they are half the distance. Release dates, as marked on the course page on 2026-10-09 [S36]: 19.10, 09.11, 23.11, 14.12.2026 and 11.01.2027; the first three fall before the mid-term on 30.11. (An earlier derivation from TISS, lecture $N$ in slot $\lceil N/2 \rceil$, gave 09.11, 16.11, 07.12, 11.01, 18.01 and was wrong; see note 00.) Deadlines are not published yet.
 
 ## A. Reading a packet trace
 

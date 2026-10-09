@@ -13,7 +13,12 @@ resolves in [`../refs/SOURCES.md`](../refs/SOURCES.md).
 Every note has the same six sections: definitions, results, worked example,
 pitfalls, exam-style questions, code.
 
-## Block A — Algorithmics · Chen and Pichler, Oct–Nov · **Exam 1, 11 Dec**
+## Block A: Algorithmics · Chen (decks [S62]) and Pichler, 01.10-23.10 · **Exam 1, 11 Dec**
+
+The 2026W session-by-session schedule and the chapter-to-note map are in
+[`../refs/lecture-notes-map.md`](../refs/lecture-notes-map.md); notes A01-A03
+carry a "2026W lectures" section with drill cards checked against the decks
+[S62].
 
 Taught jointly with 192.219 in EI 10 / EI 8 / EI 5 [S5]. Kleinberg & Tardos
 order [S25].
@@ -29,7 +34,7 @@ order [S25].
 | [A07](A07-approximation.md) | approximation ratios, greedy and LP-rounding bounds, inapproximability |
 | [A08](A08-lp-vs-ilp.md) | linear programming, duality, integrality gaps, ILP |
 
-## Block B — Complexity theory · Pichler, Nov–Dec · **Exam 1** (B06 → Exam 2)
+## Block B: Complexity theory · Pichler (inferred), 12.10 and 28.10-06.11 [S62] · **Exam 1** (B06 → Exam 2)
 
 Papadimitriou order [S26]; Pichler's own heading list [S14].
 
@@ -45,7 +50,7 @@ Papadimitriou order [S26]; Pichler's own heading list [S14].
 B06 is filed under *Complexity theory* on the TISS subject list [S1] but is
 written for Exam 2, whose title is "Quantum Algorithms **and Complexity**".
 
-## Block C — Quantum computing · Egly, Dec–Jan · **Exam 2, 21 Jan**
+## Block C: Quantum computing · Egly (inferred), 09.11-30.11, quantum complexity 07.12-16.12 [S62] · **Exam 2, 21 Jan**
 
 In the order of Egly's own lecture, reconstructed from the student summary of
 192.070 [S20]; conventions from his exercise sheets [S16, S17].

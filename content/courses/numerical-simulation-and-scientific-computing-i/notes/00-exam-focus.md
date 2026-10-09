@@ -3,7 +3,8 @@
 Read this before deciding how much time to give a topic. Written 2026-09-22 from
 the sources in [`../refs/SOURCES.md`](../refs/SOURCES.md); logistics updated
 2026-09-27 after a logged-in re-read of TISS, in which no field of the course page
-had changed [S1].
+had changed [S1]; **updated 2026-10-09 from the TUWEL course [S45]** (TISS
+re-read the same day, unchanged).
 
 ## The honest headline: there is no past paper
 
@@ -20,12 +21,63 @@ Unlike most TU Wien courses, 360.242 leaves no public trail.
   NSSC II (tiss:360243) under two lecturers, both also empty [S4] [S5].
 - Neither the **Institute for Microelectronics** [S7] nor any of the five
   lecturers publishes slides, sheets or papers for this course [S8] [S10].
-- **TUWEL** has the material and needs a login. Not fetched, not ours to copy.
-  The course opens there on 05.10.2026 [S1].
+- **TUWEL** has the material and needs a login. Since 2026-10-09 it is read
+  for facts and cited as [S45]; nothing from it is copied.
 
 So nothing below is a reconstruction of a real paper. What follows is what TISS
-states, what the structure of the course implies, and - clearly marked - what is
-a guess.
+and TUWEL state, what the structure of the course implies, and - clearly marked -
+what is a guess.
+
+## What TUWEL and the course information slides state (2026-10-09) [S45]
+
+This section answers most of the open questions further down; where they
+disagree, this section wins.
+
+**Four parts, four lecturers.** The course is taught in four blocks, each by
+one lecturer, each with its own exercise:
+
+| part | lecturer | sessions (preliminary) |
+|---|---|---|
+| 1 Software engineering tools and practices | Toth (also organisation) | 08.10, 15.10, 22.10 (workshop), last Q&A 29.10; a closing part 1 lecture on 14.01 |
+| 2 Foundations of high-performance computing | Manstetten | 29.10, 05.11, 12.11, last Q&A 19.11 |
+| 3 Numerical methods for ordinary differential equations | Schöberl | 19.11, 26.11, 03.12, last Q&A 10.12 |
+| 4 Sparse linear algebra and shared memory parallelism | Moriche Guerrero | 10.12, 17.12, 07.01, last Q&A 14.01 |
+
+Thursdays 13:15-16:00 in Sem.R. DA grün 03 A. The plan starts on 08.10 and
+lists nothing for 01.10, which TISS books [S1]. Each part mixes lectures with Q&A sessions on its
+exercise.
+
+**Grading.**
+
+- 100 points: **40 from the exercises** (10 per part) and **60 from the written
+  exam** (15 per part). The percentage maps to grades at 50 (4), 62 (3), 74 (2)
+  and 87 (1).
+- **Every part's exercise must be positive (at least 5 of 10)** to be admitted
+  to the exam. A negative submission gets one deadline extension; a late
+  resubmission is capped at half the points.
+- **The exam must be positive (at least 50 %)** to pass, whatever the exercise
+  score.
+
+**Exercises.** One per part, in groups of four (the slides also say 3-4; the
+TUWEL group tool fills up groups smaller than four after the deadline), handed
+in on TUWEL and TU Wien GitLab before the next part starts. Part 1 is a shared
+repository: each team takes one task (a GitLab issue), presents it in a
+workshop (5 minutes plus 2 for questions), reviews other teams' merge requests
+and merges its own. TUWEL deadlines for part 1: code review 25.10.2026, code
+submission 01.11.2026, both 23:59. Group registration was reopened until
+Sunday 11.10.2026 (announcement of 09.10.2026).
+
+**Written exam.** Closed book, individual, on paper, **180 minutes**, about
+**15 independent questions** worth 2-4 points each, covering lectures and
+exercises. It can be retaken once (the substitute date at the start of the
+next semester), and **the second attempt counts**.
+
+**What this settles.** The hand-ins do carry marks (40 %), not only a gate.
+TUWEL describes only a written exam; the oral component that TISS's "Written
+and oral" suggests is not mentioned anywhere on TUWEL. The ten TISS topics are
+not the teaching order: see
+[`../refs/lecture-notes-map.md`](../refs/lecture-notes-map.md) for how the four
+parts map onto notes 01-10.
 
 ## What TISS actually states [S1]
 
@@ -65,7 +117,8 @@ Four things follow directly, and they are the only things that follow directly:
 | Course registration | Cap 50, CSE prioritised, then 066 393, then other masters. Closes **08.10.2026 15:00** | [S1] |
 | Lecture | Thu 13:00-16:00, Sem.R. DA grün 03 A, 01.10.2026-28.01.2027 | [S1] |
 | Exams | written 27.01.2027 10:00-13:00 GM 2 Radinger (register 19.10.2026-22.01.2027 14:00); substitute 05.03.2027 11:00-14:00 FH HS 6 | [S1] |
-| TUWEL | course available from 05.10.2026 | [S1] |
+| TUWEL | course 83671 open; schedule, rules and part 1 slides read 2026-10-09 | [S1] [S45] |
+| Lecture plan | four parts, first planned session 08.10, 13:15-16:00 | [S45] |
 
 
 TISS points to TUWEL from 05.10.2026 [S1] and publishes no material of its
@@ -160,8 +213,9 @@ They are **ours**, not reconstructions.
    `reduction`, `schedule`, `private`/`firstprivate`/`default(none)`,
    `atomic` vs `critical`. It is in
    [`../refs/vendor/openmp-api-specification-5.2.pdf`](../refs/vendor/openmp-api-specification-5.2.pdf).
-6. **Ask about the oral part in the first lecture**, and about whether the
-   hand-ins carry marks. Both are unresolved above.
+6. ~~Ask about the oral part and whether the hand-ins carry marks.~~ Answered
+   by TUWEL on 2026-10-09 [S45]: the hand-ins are 40 % of the grade, and only
+   a written exam is described.
 
 ## Our exam-style questions
 

@@ -44,13 +44,48 @@ session. There will be five exercise sessions."
 Note also that **there is no Friday lecture on 11.12** — stream 6 skips it.
 That is Exam 1 day (09:00–12:00).
 
+## The 2026W schedule, from TUWEL (read 2026-10-09) [S62]
+
+The TUWEL page "Lecture and exercise schedule" (last modified 01.10.2026) gives
+topic and room per session. It replaces the inferred "when" column of the block
+table below, which was built from TISS room bookings alone.
+
+| part | sessions | rooms |
+|---|---|---|
+| Algorithmics, lectures 1-8 (two sessions are labelled 7) | 01.10 (kickoff), 05.10, 07.10, 09.10, 14.10, 16.10, 19.10, 21.10, 23.10 | EI 10, EI 8, EI 5 |
+| Complexity 1-5 | Mon 12.10, then 28.10, 30.10, 04.11, 06.11 | EI 8, EI 5, EI 10 |
+| Quantum 1-7 | Mon/Wed 09.11-25.11, and Mon 30.11 (14:00-18:00) | Zemanek |
+| Complexity (quantum) 2-5 | 07.12, 09.12, 14.12, 16.12 (no session is labelled 1) | EI 10, Zemanek |
+| exercise sessions | Fri 13.11 and 20.11 (algorithmics), 27.11 (complexity), 04.12 and 18.12 (quantum computing), 08.01 (quantum complexity) | EI 5, Zemanek |
+| exams | 11.12 (Exam 1), 21.01 (Exam 2), 09.03 (retake) | HS 8, EI 9, HS 7 |
+
+So the course has **four** parts on TUWEL, not three: algorithmics,
+classical complexity, quantum computing and quantum complexity, each with its
+own TUWEL section and its own exercise sheet(s). Classical complexity runs in
+late October and early November, inside the EI slots, and quantum computing in
+November, before the quantum complexity lectures of December. The algorithmics
+decks are authored by **Chen** [S62]; the other parts have no material yet.
+
+Chapter-to-note map for what has been taught so far (decks follow Kleinberg
+and Tardos [S25]):
+
+| deck [S62] | sessions | note |
+|---|---|---|
+| Warm-Up (chapter 1): stable matching, five representative problems, polynomial time, asymptotic order of growth, common running times | 01.10, 05.10 | [A01](../notes/A01-asymptotics-and-recurrences.md) |
+| Chapter 2: graph basics, representations, paths and trees, BFS, DFS, connected components, bipartiteness, strong connectivity, DAGs and topological order | 07.10 | [A02](../notes/A02-graphs.md) |
+| Chapter 3: interval scheduling and partitioning, priority queues and binary heaps, Dijkstra, MST (cut and cycle property, Prim, Kruskal), minimising lateness, greedy proof strategies | 09.10 | [A03](../notes/A03-greedy.md) |
+
+Note the numbering shift: the TUWEL decks call graphs "chapter 2" and greedy
+"chapter 3" (Kleinberg and Tardos chapters 3 and 4), because the warm-up deck
+merges KT chapters 1 and 2.
+
 ## The three blocks
 
 | block | when | rooms | lecturer(s) | examined by | evidence |
 |---|---|---|---|---|---|
-| **A — Algorithmics** (+ the complexity basics 192.042 used to carry) | Thu 01.10 – Fri 06.11, 9 h/week | EI 11, EI 10, EI 8, EI 5 | **Chen**, **Pichler**, with tutors | **Exam 1**, Fri 11.12.2026, 09:00–12:00, HS 8 Heinz Parkus | streams 0–3 identical to 192.219 [S5]; Chen's unit is Algorithms and Complexity [S11]; the 192.219 exam is the same slot |
-| **B — Complexity theory** | mid-Nov – early Dec | FAV Zemanek (Mon/Wed), EI 5 (Fri) | **Pichler** | **Exam 1** (its title is "Algorithmics **& Complexity Theory**") | Pichler is the sole lecturer of 192.165 Complexity Theory 2026W [S7] and of its predecessor 181.142 [S8, S14, S23]; his topic list matches the B-series one-for-one |
-| **C — Quantum computing** | Dec – 27.01 | FAV Zemanek, SR FAV 01 A | **Egly** | **Exam 2**, Thu 21.01.2027, 14:00–17:00, EI 9 Hlawka | Egly is the lecturer of 192.036 [S6, S15] and 192.070 [S20]; those courses' sheets, protocols and student summary match the C-series exactly |
+| **A: Algorithmics** (+ the complexity basics 192.042 used to carry) | Thu 01.10 - Fri 23.10 [S62] | EI 10, EI 8, EI 5 | **Chen** (decks [S62]), **Pichler**, with tutors | **Exam 1**, Fri 11.12.2026, 09:00-12:00, HS 8 Heinz Parkus | streams 0-3 identical to 192.219 [S5]; Chen's unit is Algorithms and Complexity [S11]; the 192.219 exam is the same slot |
+| **B: Complexity theory** | 12.10, then 28.10 - 06.11 [S62] (earlier guess: mid-Nov to early Dec) | EI 8, EI 5, EI 10 | **Pichler** (inferred) | **Exam 1** (its title is "Algorithmics **& Complexity Theory**") | Pichler is the sole lecturer of 192.165 Complexity Theory 2026W [S7] and of its predecessor 181.142 [S8, S14, S23]; his topic list matches the B-series one-for-one |
+| **C: Quantum computing** | 09.11 - 30.11, quantum complexity 07.12 - 16.12 [S62] (earlier guess: Dec to 27.01) | FAV Zemanek, EI 10 | **Egly** (inferred) | **Exam 2**, Thu 21.01.2027, 14:00-17:00, EI 9 Hlawka | Egly is the lecturer of 192.036 [S6, S15] and 192.070 [S20]; those courses' sheets, protocols and student summary match the C-series exactly |
 
 **Fermüller's role is not established.** He is on the lecturer list of every
 offering since 2024W [S1–S3] and on 192.042 [S4], his research unit is Theory

@@ -4,9 +4,13 @@ Built on 2026-09-22 from the TISS page [S1] and from the **sibling courses that
 share this course's lecturers and, in October and November, its lecture slots**.
 Sources in [`../refs/SOURCES.md`](../refs/SOURCES.md); the block structure and
 its evidence in [`../refs/lecture-notes-map.md`](../refs/lecture-notes-map.md).
+**Updated 2026-10-09 from the TUWEL course [S62]**: grading scheme, exercise
+format, exam lengths and the session schedule are now sourced (section
+"Grading and exercises" below); the rest of this page is unchanged.
 
 **Read the warning first.** 192.043 has **no VoWi page, no past paper and no
-public slide deck of its own** [S24], and 2026W is the **first run in its present
+public slide deck of its own** [S24] (the 2026W decks are on TUWEL, login only
+[S62]), and 2026W is the **first run in its present
 form**: 6.0 h / 10.0 ECTS, merging the old 7.0 ECTS 192.043 with the 3.0 ECTS
 preparation course 192.042, which has no 2026W offering [S1–S4]. In 2024W the
 course examined with *two* written papers in February and March [S3]; in 2026W it
@@ -24,12 +28,40 @@ which.
 | room | HS 8 Heinz Parkus – CEE | EI 9 Hlawka HS – ETIT | HS 7 Schütte-Lihotzky – ARCH |
 | registration | 01.11.2026 09:00 – 07.12.2026 09:00 | 01.12.2026 09:00 – 19.01.2027 09:00 | 01.12.2026 09:00 – 08.03.2027 09:00 |
 | written? | yes (TISS "Mode of examination: written") | yes | yes |
+| length [S62] | 90 min | 90 min | 90 + 90 min (14:00-16:00 and 16:00-18:00 on the slides; 13:30-15:30 and 15:45-18:00 on the schedule page) |
+| points [S62] | 35 | 35 | not stated how a retake half is counted |
 | notes | **A01–A08 + B01–B05** | **B06 + C01–C08** | two group-registered halves, registration 25.01.2027 09:00 – 04.03.2027 09:00 |
 
-Three hours each. Course-level mode of examination is **immanent**, and the
-modalities are exactly six words: "Exercises + written exam" [S1]. **The
-weighting of exercises against exams is not published.** Do not assume it; ask at
-the first meeting.
+TISS books three hours for each; the papers themselves are **90 minutes**, and
+the retake is 90 + 90 minutes, one half per exam [S62]. Course-level mode of
+examination is **immanent**, and the TISS modalities are exactly six words:
+"Exercises + written exam" [S1].
+
+## Grading and exercises, 2026W (TUWEL organization slides) [S62]
+
+Added 2026-10-09; this replaces the earlier "weighting not published".
+
+- **100 points in total.** Six exercise sheets at **5 points** each (30) and
+  two written exams at **35 points** each (70).
+- **Grade thresholds:** at least 88 points for 1, 75 for 2, 63 for 3, 50 for 4.
+- **Exam floor:** at least **35 of your points must come from the exams**, so
+  the exercise sheets cannot carry a pass on their own (30 < 50), and full
+  sheet marks still need half of the exam points.
+- **Six exercise sessions**, one per sheet: Fri 13.11, 20.11, 27.11, 04.12,
+  18.12.2026 and Fri 08.01.2027. By the schedule page these are two
+  algorithmics sessions, one classical complexity, two quantum computing and
+  one quantum complexity session.
+- **Hand-ins in groups of 2-3**, graded; AI-generated solutions score 0.
+  Groups are formed in a TUWEL group registration (open 06.10-23.10.2026).
+- **2026 hand-in deadlines are not set yet**: the six TUWEL hand-in activities
+  still carry last year's dates. Their names give the sheet split: two
+  algorithmics, one classical complexity, two quantum computing, one quantum
+  complexity.
+
+Arithmetic worth doing once: with 30/30 on the sheets you need 35/70 in the
+exams to reach the floor, and that already gives 65 points, a 3. With half the
+sheet points (15), you need 35 exam points for a 4. A missed exam caps you at
+35 + 30 = 65.
 
 **The retake is contradictory in TISS.** See
 [`../docs/tiss.md`](../docs/tiss.md) §Discrepancies: the row says 09.03.2027
@@ -249,7 +281,7 @@ otherwise.
 - **Do not over-index on the oral protocols.** They are orals of a different
   course; their "no formulas were asked" does not transfer to a three-hour
   written paper.
-- Ask at the **first meeting** (Thu 1 Oct, EI 11 — see the time discrepancy in
-  [`../docs/tiss.md`](../docs/tiss.md)) for the grading split, whether the
-  algorithmics exercises are the 192.219 ones, and which lecturer takes which
-  block. Those three answers would replace half of the inference on this page.
+- The grading split is now known [S62]: 30 sheet points against 70 exam
+  points, with at least 35 from the exams. Still open: whether the algorithmics
+  sheets are the 192.219 ones, and who teaches the complexity and quantum
+  blocks (only Chen's algorithmics decks are on TUWEL so far).

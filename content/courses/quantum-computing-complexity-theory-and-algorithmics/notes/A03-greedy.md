@@ -111,6 +111,128 @@ Sorted: cf2 de6 ab7 ac9 ef9 bc10 cd11 af14 bd15. Take cf (sets {c,f}), de ({d,e}
 
 5. **Why is Kruskal's running time $O(m \log n)$ rather than $O(m \log m)$? Are these different?** $m \le n^2$ so $\log m \le 2 \log n$; they are the same order. The sort dominates; the union-find work $O(m \alpha(n))$ is lower order.
 
+## 2026W lecture: chapter 3, greedy algorithms (09.10) [S62]
+
+Chen's chapter-3 deck is Kleinberg and Tardos chapter 4 [S25]: interval
+scheduling, interval partitioning, shortest paths, minimum spanning trees and
+scheduling to minimise lateness. In our words, with what it adds to the
+sections above:
+
+- **Interval scheduling.** Of the natural orders (earliest start, fewest
+  conflicts, shortest interval, earliest finish), only earliest finish time is
+  optimal. Proof: compare with an optimum that agrees on the longest prefix;
+  the greedy's next job finishes no later, so it can replace the optimum's.
+  $O(n\log n)$ by sorting and remembering the last finish time.
+- **Interval partitioning.** The depth (most intervals over one point) is a
+  lower bound on the number of rooms. Greedy by start time opens a new room
+  only when the lecture conflicts with all open rooms, which means depth many
+  intervals overlap just after its start, so it is optimal. $O(n\log n)$ with
+  a priority queue of room finish times.
+- **Priority queues as binary heaps** (new in the deck): a complete binary tree
+  stored level by level in an array, parent of $i$ at $\lfloor i/2\rfloor$,
+  children at $2i$ and $2i+1$, height $\lfloor\log_2 n\rfloor$. Insert and
+  decrease-priority sift up, extract-min moves the last element to the root and
+  sifts down towards the smaller child; each is $O(\log n)$.
+- **Dijkstra** grows an explored set $S$ and always adds the vertex with the
+  smallest tentative distance $\min_{(u,v),\,u\in S} d(u)+\ell_{uv}$. Invariant:
+  $d(u)$ is the true distance for every $u\in S$. With a binary heap
+  $O((n+m)\log n)$.
+- **MST.** Cayley: $K_n$ has $n^{n-2}$ spanning trees, so brute force is
+  hopeless. With distinct costs the MST is unique; the cut property (cheapest
+  edge leaving any $S$ is in it) and the cycle property (most expensive edge on
+  any cycle is not) both follow by exchange. Prim applies the cut property to
+  the growing tree ($O(n^2)$ with an array, $O(m\log n)$ with a heap); Kruskal
+  takes edges by increasing cost and skips those that close a cycle (union-find
+  for the component test). Ties are broken lexicographically by edge index.
+- **Minimising maximum lateness.** One machine, jobs with length $t_j$ and due
+  time $d_j$; lateness $\max(0, f_j-d_j)$. Shortest job first and smallest
+  slack first fail on two-job counterexamples; **earliest due time first** is
+  optimal. Proof: some optimum has no idle time; swapping two adjacent
+  inverted jobs removes one inversion and does not raise the maximum lateness,
+  so an optimum with no inversions exists, and that is the greedy schedule.
+- **How greedy proofs go:** greedy stays ahead, a structural bound the greedy
+  meets (depth), the exchange argument, and (named only) matroids.
+
+### Cards
+
+```card id=qc-alg3-interval-scheduling
+Interval scheduling: which greedy order is optimal, and which natural orders are not?
+---
+Earliest finish time first is optimal. Earliest start time, fewest conflicts and shortest interval all fail on small counterexamples.
+```
+
+```card id=qc-alg3-interval-proof
+Proof idea that earliest-finish-first is optimal for interval scheduling.
+---
+Take an optimum agreeing with the greedy on the first $r$ jobs, $r$ maximal. The greedy's job $i_{r+1}$ finishes no later than the optimum's $j_{r+1}$, so swapping it in keeps the solution feasible and optimal but longer in agreement: contradiction.
+```
+
+```card id=qc-alg3-depth
+Interval partitioning: lower bound on the number of rooms, and why greedy by start time meets it.
+---
+The depth (maximum number of intervals containing one point). Greedy opens room $d$ only for a lecture that conflicts with all $d-1$ open rooms; those lectures started earlier and are still running, so $d$ intervals overlap right after its start.
+```
+
+```card id=qc-alg3-heap-array
+Binary min-heap in an array $H[1..n]$: where are parent and children of $i$, and how high is it?
+---
+Parent $\lfloor i/2\rfloor$, children $2i$ and $2i+1$; height $\lfloor\log_2 n\rfloor$. Heap order: every node's priority is at most its children's, so the minimum is at the root.
+```
+
+```card id=qc-alg3-heap-ops
+Binary heap: how do insert and extract-min work, and what do they cost?
+---
+Insert: append at the end and swap with the parent while smaller (sift up). Extract-min: remove the root, move the last element there and swap with the smaller child while larger (sift down). Both $O(\log n)$.
+```
+
+```card id=qc-alg3-dijkstra
+Dijkstra: invariant and running time with a binary heap.
+---
+For every explored $u\in S$, $d(u)$ is the shortest $s$-$u$ distance (non-negative arc lengths). Next vertex: smallest $\min_{(u,v),u\in S} d(u)+\ell_{uv}$. $O((n+m)\log n)$.
+```
+
+```card id=qc-alg3-cut-property
+MST cut property (distinct edge costs).
+---
+For any vertex set $S$ (non-empty, not all of $V$), the cheapest edge with exactly one endpoint in $S$ belongs to the MST. Exchange: otherwise adding it closes a cycle that crosses the cut a second time at a dearer edge $f$; swap $f$ out.
+```
+
+```card id=qc-alg3-cycle-property
+MST cycle property (distinct edge costs).
+---
+The most expensive edge $f$ on any cycle $C$ is in no MST. Exchange: removing $f$ from a tree splits it into a cut that $C$ crosses again at a cheaper edge $e$; adding $e$ gives a cheaper spanning tree.
+```
+
+```card id=qc-alg3-prim-kruskal
+Prim vs Kruskal: rule and running time.
+---
+Prim: grow one tree from a root, always adding the cheapest edge leaving it (cut property); $O(n^2)$ with an array, $O(m\log n)$ with a heap. Kruskal: edges by increasing cost, skip those closing a cycle (cycle property), components in union-find; $O(m\log m)$ for the sort.
+```
+
+```card id=qc-alg3-cayley
+How many spanning trees does $K_n$ have?
+---
+$n^{n-2}$ (Cayley), which is why MST by enumeration is hopeless.
+```
+
+```card id=qc-alg3-lateness
+Minimising maximum lateness on one machine: which greedy rule, and why not the other two?
+---
+Earliest due time first. Shortest processing time ignores deadlines ($t=(1,10)$, $d=(100,10)$); smallest slack $d_j-t_j$ fails on $t=(1,10)$, $d=(2,10)$.
+```
+
+```card id=qc-alg3-inversion-swap
+Key lemma in the earliest-due-time proof.
+---
+In a schedule without idle time, an inversion ($d_i<d_j$ but $j$ before $i$) implies an adjacent one, and swapping two adjacent inverted jobs removes one inversion without increasing the maximum lateness. So an optimum with no inversions exists, which is the greedy schedule.
+```
+
+```card id=qc-alg3-proof-strategies
+Three standard ways to prove a greedy algorithm optimal.
+---
+Greedy stays ahead (after every step at least as good as any other solution); structural bound (every solution needs at least $X$, greedy achieves $X$); exchange argument (turn any optimum into the greedy solution step by step without loss).
+```
+
 ## Code
 
 `src/py/algorithmics/greedy.py`: `interval_scheduling(intervals)`, `interval_partitioning(intervals)` (returns room labels and depth), `UnionFind` (union by rank, path compression), `kruskal(n, edges)`, `prim(adj, root)`. C++ Kruskal with a hand-written union-find: `src/cpp/kruskal.cpp`. Dijkstra: `graphs.py` and `src/cpp/dijkstra.cpp` (A02).

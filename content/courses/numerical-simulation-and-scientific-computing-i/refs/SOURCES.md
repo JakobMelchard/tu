@@ -8,8 +8,9 @@ re-check before an exam.
 **Vendoring policy.** Three sources are redistributable and are committed under
 `vendor/`; everything else is cited only. See
 [`README.md`](README.md) for the licence of each vendored file and
-[`fetch-sources.sh`](fetch-sources.sh) for the cite-only downloads. No TUWEL
-material was fetched: TUWEL needs a login and is not ours to copy.
+[`fetch-sources.sh`](fetch-sources.sh) for the cite-only downloads. TUWEL
+material needs a login and is not ours to copy: since 2026-10-09 it is read for
+facts and cited as [S45], in our own words, and nothing from it is committed.
 
 **The headline finding.** TISS says outright *"No lecture notes are available."*
 in every offering from 2019W to 2026W [S1–S3], VoWi has the course page but it
@@ -738,12 +739,42 @@ not finite differences, and nothing in it is evidence about the 360.242 exam
 ---
 
 
+## The 2026W course material (added 2026-10-09; cite-only)
+
+### S45 - 360.242 TUWEL course 83671, 2026W (login, cite-only)
+
+- What was read on 2026-10-09: the course page (texts on exercises, groups,
+  written exam and grading; schedule; getting started), the announcement
+  forum (one post, 09.10.2026), and the lecture material it links:
+  - "Course Information Slides", 13 pages, dated v2026-10-08 (lecture team,
+    four-part structure, preliminary dates, grading, exercise and exam rules);
+  - Toth's part 1 decks, all v2026-10-08: "Introduction to Scientific Software
+    Development" (44 pages), "Details on Git, CMake, Containers, GitLab, etc."
+    (75 pages), "Workshop" (4 pages), "Software Licensing" (25 pages). These
+    four are hosted on a TU Wien GitLab Pages site that TUWEL links to; that
+    site is not linked from anywhere public, so they are treated like the rest
+    of TUWEL;
+  - part 4 material still dated **2025W** (December 2025): a sparse linear
+    algebra deck "Lecture 1", a multigrid deck and the Jacobi exercise sheet.
+    Read for orientation only; the 2026W part 4 starts on 10.12.2026.
+- Where: TUWEL, course 83671, linked from the TISS page [S1]. Login only.
+- **Licence: all rights reserved. Not vendored, cite-only.** Nothing from the
+  slides or pages is copied beyond names of topics and tools; the notes
+  summarise in their own words. The exercise hand-ins are graded group work and
+  are not solved here.
+- Used for: the grading, exercise and exam rules and the four-part schedule in
+  [`../notes/00-exam-focus.md`](../notes/00-exam-focus.md) and
+  [`lecture-notes-map.md`](lecture-notes-map.md), the TISS-against-TUWEL table
+  in [`../docs/tiss.md`](../docs/tiss.md), and the 2026W section and cards of
+  [`../notes/10-software-engineering-for-scientific-computing.md`](../notes/10-software-engineering-for-scientific-computing.md).
+  Where it disagrees with an inference in these notes, S45 wins.
+
+---
+
 ## Sources deliberately not used
 
-- **TUWEL** (`tuwel.tuwien.ac.at`). The TISS page says the TUWEL course opens
-  05.10.2026 [S1]. Slides, exercise sheets and hand-in specifications live
-  there. It requires a TU Wien login and its contents are not ours to
-  redistribute. **Not fetched.**
+- **TUWEL** (`tuwel.tuwien.ac.at`): read since 2026-10-09, see [S45],
+  cite-only. Until then it was not fetched.
 - **The course Mattermost channel** `numerical-simulation-and-scientific-computing-i`
   (linked from S4): requires registration. Not joined.
 - **Student assignment repositories.** A GitHub repository search for
