@@ -807,6 +807,17 @@ None is vendored. *Comparability* says how close each is to what 192.125 teaches
   sections of notes 01-03. Where the 2026W decks differ from S7/S8, S58 wins
   for this term.
 
+### S59: 192.125 TUWEL course 84457, 2026W (login, cite-only)
+
+- What was read on 2026-10-09: the course page (sections, activity names and
+  due dates of sheets 1 and 2) and the announcement forum (one post,
+  08.10.2026, on the exercise mode).
+- Where: TUWEL, course 84457, linked from S1. Login only, no URL given.
+- Retrieved: 2026-10-09. **Licence: all rights reserved. Not vendored,
+  cite-only.** Summarised in our own words.
+- Used for: the hand-in rules and sheet 1/2 deadlines in
+  [`../notes/00-exam-focus.md`](../notes/00-exam-focus.md).
+
 ---
 
 ## Link audit, 2026-10-07

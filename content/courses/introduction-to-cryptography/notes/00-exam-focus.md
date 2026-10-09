@@ -48,6 +48,20 @@ Made precise in lecture 1 [S58]:
   [`../refs/lecture-notes-map.md`](../refs/lecture-notes-map.md)). The
   sessions are voluntary, recorded, and have no compulsory presentations.
 
+From TUWEL, 2026-10-09 [S59]:
+
+- **Sheet 1** (quiz) closes Fri 09.10.2026 23:59; two attempts, the last one
+  counts, and an attempt only counts once it is submitted.
+- **Sheet 2** is the first sheet with a session: upload and ticks are both due
+  **Thu 15.10.2026, 12:00**, i.e. at the start of the lecture, three hours
+  before the session. *(Inference)* expect the same Thursday-noon pattern for
+  sheets 3-9.
+- **Hand-in form:** every question and subquestion on its own page; typeset
+  (LaTeX) is welcome but not required; readable enough to be projected and
+  self-contained, with the reasoning written out.
+- **Discuss together, write alone.** Team work is encouraged, but each
+  solution must be written individually; duplicate solutions score 0.
+
 | what | when | where | apply in TISS |
 |---|---|---|---|
 | Lecture | Thu 12:00-14:00, 01.10.2026 to 21.01.2027 (15 dates, none on 24.12 and 31.12) | FAV Hörsaal 1 | n/a |
