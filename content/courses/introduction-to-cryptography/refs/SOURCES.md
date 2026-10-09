@@ -12,7 +12,8 @@ reasoning is in [`README.md`](README.md). Everything else below is cited only:
 the lecturer's slides and the past papers are third-party copyright, and
 Katz-Lindell is a commercial textbook. **No TUWEL content was fetched** — TUWEL
 needs a login and is not ours to copy. The PDF copies of Katz-Lindell that VoWi
-hosts were **not** downloaded either.
+hosts were **not** downloaded either. Exception since 2026-10-09: the 2026W
+lectures themselves [S58] are cited in our own words and never copied.
 
 **The single most valuable source is [S8]**, the lecturer's own 2024W slide
 archive: fourteen decks covering lectures 1-13a, each headed with its
@@ -785,6 +786,29 @@ None is vendored. *Comparability* says how close each is to what 192.125 teaches
 
 ---
 
+## The 2026W lectures (added 2026-10-09; cite-only)
+
+### S58: Fuchsbauer & Andreeva, 192.125 lectures 1-3, 2026W (slides and recordings)
+
+- Lecture 1, Thu 01.10.2026 (Fuchsbauer): admin, introduction, historical
+  ciphers. Lecture 2, Thu 08.10.2026, 12:00 (Fuchsbauer): modern cryptography,
+  the one-time pad. Lecture 3, Thu 08.10.2026, 15:00, held in the exercise slot
+  (Fuchsbauer finishes lecture 2 for about eight minutes, then Andreeva): block
+  ciphers.
+- Where: slides on TUWEL (course 84457, from S1), recordings on LectureTube,
+  both login-only. No URL is given because neither is public.
+- Retrieved: 2026-10-09. **Licence: all rights
+  reserved. Not vendored, cite-only.** Nothing from the decks or recordings is
+  copied into this wiki beyond short quotes; no slide images, no transcript
+  excerpts. The notes summarise in their own words.
+- Used for: the 2026W lecture order and exam rules in
+  [`lecture-notes-map.md`](lecture-notes-map.md) and
+  [`../notes/00-exam-focus.md`](../notes/00-exam-focus.md), and the 2026W
+  sections of notes 01-03. Where the 2026W decks differ from S7/S8, S58 wins
+  for this term.
+
+---
+
 ## Link audit, 2026-10-07
 
 Every URL in this file, in [`README.md`](README.md) and in
@@ -823,8 +847,12 @@ TISS pages, VoWi and IACR ePrint also in a browser).
 4. **No slide deck for 2026W**, and 2025W's covers only lectures 1-8 [S7]. The
    second half is reconstructed from the 2024W archive [S8], which was taught by
    the same two people from the same book, but is a year old.
+   Update 2026-10-09: lectures 1-3 of 2026W are now cited as [S58]; from
+   lecture 4 on, the 2024W reconstruction still applies until each lecture is
+   held.
 5. **No recording, no script.** TISS says lectures are recorded "and made
-   available on TUWEL" [S1]; that is login-only.
+   available on TUWEL" [S1]; that is login-only. Update 2026-10-09: the
+   recordings of lectures 1-3 were used for [S58], cite-only.
 6. **Katz-Lindell itself was not read.** The notes cite its chapter, theorem and
    construction numbers on the authority of the slide headers [S8, S10]; the page
    numbers and exact wording of its statements are not verified here.
