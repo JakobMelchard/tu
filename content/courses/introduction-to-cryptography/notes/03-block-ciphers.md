@@ -1,7 +1,9 @@
 # 03 — Block ciphers: DES, AES, and why key length is not enough
 
 *Lecture 3, Andreeva — one of the two decks she gives, and her own research
-area [S8, S11]. Katz-Lindell sec. 7.2 [S10]. Primary source:
+area [S8, S11]. In 2026W given on 08.10.2026 at 15:00, in the exercise slot,
+announced as "block and stream ciphers I" but covering block ciphers only
+[S58]. Katz-Lindell sec. 7.2 [S10]. Primary source:
 FIPS 197 [S21]. Code:
 [`../src/py/block_ciphers.py`](../src/py/block_ciphers.py),
 [`../src/py/private_key.py`](../src/py/private_key.py).*
@@ -16,6 +18,29 @@ $F:\{0,1\}^n\times\{0,1\}^\ell\to\{0,1\}^\ell$: for every key $k$, $F_k$ is a
 bijection on $\ell$-bit blocks with an efficient inverse. AES: $\ell = 128$,
 $n \in \{128,192,256\}$. DES: $\ell = 64$, $n = 56$.
 
+The 2026W lecture frames the design space as lying between the historical
+ciphers (blocks of one letter, broken) and the one-time pad (secure, but keys
+as long as the data): short keys, fixed blocks, and an adversary that is
+powerful but bounded [S58]. Block ciphers are the work horse underneath
+encryption, MACs and key derivation [S58].
+
+## Generic attacks fix the sizes
+
+Assume Kerckhoffs and an adversary holding many plaintext-ciphertext pairs,
+possibly for plaintexts it chose. **Generic attacks** work against anything
+with the block-cipher interface, whatever is inside [S58]:
+
+- **Exhaustive key search.** Try keys until one maps the known plaintexts to
+  the known ciphertexts. Hence the key must be long: the community settled on
+  128 bits, since even at $10^{18}$ keys per second, $2^{128}$ keys take about
+  the age of the universe [S58].
+- **Dictionary (codebook) attacks.** With short blocks, the adversary tabulates
+  plaintext-ciphertext pairs, and the statistics of the data leak through
+  exactly as with letter-wise substitution. Hence the block must be long too:
+  at least 64 bits on the slide; AES uses 128 bits for every key size [S58].
+
+Both sizes are then capped from above by efficiency.
+
 ## The security goal: the ideal cipher
 
 The ideal object is a **random permutation** for each key: $2^\ell!$
@@ -25,6 +50,15 @@ cannot *be* that — it must only be *indistinguishable* from it to an efficient
 adversary. That is the PRP definition of note 05. Everything in this note is a
 heuristic aimed at it; there is no proof, and there cannot be one from standard
 assumptions.
+
+Two points from the 2026W lecture [S58]. The ideal cipher is **not** a one-time
+pad, even though both look random: one plaintext-ciphertext pair reveals the
+whole one-time-pad key, while for a random permutation one pair says almost
+nothing about the others. And it is not practical: describing one permutation
+of 64-bit blocks takes $\log_2\big((2^{64})!\big)\approx 2^{70}$ bits, on the
+order of 150 million TB, as a key. The design goal is therefore an **efficiently
+computable keyed permutation with short keys that behaves like the ideal
+cipher** [S58].
 
 ## Shannon's two goals: confusion and diffusion
 
@@ -40,7 +74,9 @@ From [S50], quoted on the lecture-3 slide [S8]:
 > **false** [S16]. Permutation gives diffusion; substitution gives confusion.
 
 Diffusion is measurable. Flip one input bit and count the output bits that
-change — for a good cipher it is about half, the **avalanche criterion**.
+change: for a good cipher it is about half, the **avalanche criterion**
+(stated in the 2026W lecture as "at least half" [S58]; it is one test among
+several, not a definition of security).
 `block_ciphers.avalanche` measures 0.497 for AES-128 over all 128 single-bit
 flips, and 0.14 for a one-round Feistel network
 (`test_block_ciphers.py::test_aes_diffuses_a_single_bit_over_the_whole_block`).
@@ -65,6 +101,19 @@ Iterate $r$ times. Two requirements that are easy to get wrong:
 
 The S-box is **public** [S16]. There is no key in it.
 
+**How the lecture arrives there** [S58]. Shrink the ideal cipher: split a
+64-bit block into eight bytes and apply a random permutation of 8 bits to each.
+That is pure substitution: a one-bit input change stays inside its byte, so
+nothing diffuses. Add a mixing step that spreads each byte's output bits over
+the block, and repeat the pair of steps for several rounds; now a single bit
+reaches the whole block. But if the random byte permutations are the key, 16
+rounds of eight of them amount to a key of about 32 KB. The fix used by
+essentially every modern design: one **fixed, public** S-box, with the round
+key XORed into the input just before it, $y_i = S(x_i\oplus k_i)$, and round
+keys derived from one short key. The S-box contributes the non-linearity
+(confusion), the linear mixing layer the diffusion. Andreeva's summary:
+substitute, permute, iterate [S58].
+
 ## Feistel networks
 
 The alternative to needing an invertible round function: make the *network*
@@ -82,6 +131,11 @@ round function need not be injective, let alone invertible. Our
 > not invertible, the network as a whole is still invertible"* — **true**, and it
 > is the entire reason the construction exists.
 
+The 2026W lecture adds the engineering side [S58]: decryption uses the same
+components as encryption with the XOR rewired and the round keys in reverse
+order, which suited the hardware-oriented designs of the 1970s; and since $f$
+need not be invertible, the designer can choose it for security alone.
+
 **One round is trivially broken** [S15]. $L_1 = R_0$: the left half of the
 ciphertext *is* the right half of the plaintext, in the clear. The EAV
 distinguisher: submit $m_0 = 0^{\ell/2}\|0^{\ell/2}$ and
@@ -98,18 +152,41 @@ PRP. The lecture presents Feistel structurally and does not state this.
 Data Encryption Standard, 1977. 64-bit block, **56-bit key**, 16-round Feistel
 with an S-box-and-permutation round function [S8].
 
+**History, as told in 2026W** [S58]. The US standards bureau (NBS, now NIST)
+called for a cipher for commercial use in 1972; IBM entered Lucifer, Feistel's
+design; the NSA was involved and the key shrank from 128 to 56 bits; the
+standard appeared in 1977 without its design criteria and was extended until
+1999. Suspicions of a trapdoor in the S-boxes turned out unfounded; the public
+effort to find one is a large part of why cryptanalysis became an open
+science.
+
+**The round function** $f$ [S58], on the 32-bit right half:
+
+1. **expansion** from 32 to 48 bits (some bits are duplicated);
+2. **XOR** with a 48-bit round key taken from the 56-bit key;
+3. **eight S-boxes** in parallel, each a lookup table from 6 bits to 4 bits;
+4. a fixed **permutation** of the 32 output bits.
+
+The S-boxes compress 6 bits to 4, so $f$ is not invertible; inside a Feistel
+network it does not need to be [S58].
+
 - *"DES has longer keys than AES"* — **false** [S12]. 56 against 128.
 - **Differential cryptanalysis** (Biham & Shamir, 1990) traces how input
-  differences propagate; DES turned out to be *already hardened* against it,
-  which is how the world learned IBM and the NSA had known about it in 1974
-  *(unsourced: this history is Coppersmith's 1994 IBM J. Res. Dev. account; the
-  lecture slide names the attack and its authors but not the 1974 story [S8],
-  and no primary source for it was fetched. The technical claim — DES resists
-  differential cryptanalysis — is on the slide; the anecdote is not.)*.
-  This is the historical point the lecture makes: the design survived the
-  cryptanalysis, the **key length** did not.
-- **Brute force** over $2^{56}$ keys was demonstrated in 1998 and is now
-  minutes of GPU time.
+  differences propagate. Against DES it needs $2^{47}$ chosen plaintexts, so it
+  shows a theoretical weakness rather than a practical break [S58]. DES turned
+  out to be *already hardened* against it: the 2026W slide states that IBM and
+  the NSA knew the technique in the 1970s, and the lecturer adds "most likely"
+  [S58]. (Earlier versions of this note marked that history as unsourced.)
+- **Linear cryptanalysis** (Matsui, 1993) is a known-plaintext attack; against
+  DES it needs $2^{43}$ plaintext-ciphertext pairs [S58].
+- **Brute force** remains the best attack in practice [S58]: in 1997 a search
+  over thousands of computers took 69 days; in 1999 the dedicated machine Deep
+  Crack took 22 hours; today it takes minutes with precomputation.
+
+This is the historical point the lecture makes: the design survived the
+cryptanalysis, the **key length** did not. Andreeva's advice is not to use DES,
+because of the key and not because of the design; more rounds would not help,
+the key is the problem [S58].
 
 ## 2DES, and the meet-in-the-middle attack
 
@@ -148,13 +225,40 @@ Meet-in-the-middle still applies across the first two stages, so:
 | three-key 3DES (3TDEA) | 168 | **112** [S27] |
 
 The lecture slide states this as "Keys: 112 bits, Security: 112 (NIST: 80)"
-[S8]. SP 800-57 Part 1 Rev. 5 deprecates 3TDEA and disallows 2TDEA for applying
+[S8], unchanged in 2026W [S58]. The 2026W slide writes Triple DES in its
+two-key form, $y = \mathsf{DES}_{k_1}\big(\mathsf{DES}^{-1}_{k_2}(\mathsf{DES}_{k_1}(x))\big)$,
+and the lecture gives the reasons [S58]: a third independent key would not
+help, since meet-in-the-middle already brings even three keys down to about
+$2^{112}$; and with $k_1 = k_2$ the first two stages cancel, so the scheme
+falls back to single DES for legacy systems. Triple DES survives in banking
+and card payments; new encryption with it is no longer allowed, decryption of
+old data is [S58]. SP 800-57 Part 1 Rev. 5 deprecates 3TDEA and disallows 2TDEA for applying
 protection [S27]. And the 64-bit block is its own problem: the PRP/PRF switching
 lemma (note 05) stops being useful at $2^{32}$ blocks, about 32 GB under one key.
+
+## DES against AES
+
+The 2026W comparison slide, in short [S58]:
+
+| | DES | AES |
+|---|---|---|
+| structure | Feistel, iterated | SPN, iterated |
+| block | 64 bits | 128 bits |
+| key | 56 bits | 128, 192 or 256 bits |
+| S-boxes | eight different ones | one |
+| optimised for | hardware | byte-oriented software |
+| design process | criteria kept secret | open NIST competition, standard 2001 |
+
+The slide also calls DES's round function non-invertible and AES's invertible;
+Andreeva corrected this in the lecture: the DES *round* is invertible (it is a
+Feistel round), only the function $f$ inside it, with its 6-to-4-bit S-boxes,
+is not [S58].
 
 ## AES (Rijndael)
 
 Rijndael was selected in 2000 and standardised as FIPS 197 in 2001 [S21].
+Its designers are Rijmen and Daemen; the lecture uses the 128-bit key
+throughout [S58].
 **Not** a Feistel network: an SPN [S13]. 128-bit block;
 key 128/192/256 bits; 10/12/14 rounds.
 
@@ -168,6 +272,16 @@ State: a $4\times 4$ array of bytes, column-major. Each round:
 4. **AddRoundKey** — XOR the round key from the key schedule.
 
 The final round omits MixColumns.
+
+In the 2026W lecture [S58]: a round key is also added once before the first
+round; SubBytes supplies the confusion, ShiftRows and MixColumns the
+diffusion; every step is invertible. The MixColumns matrix is an **MDS**
+matrix, chosen for good diffusion (measured by the *branch number*) and
+efficient inversion. The **key schedule** was skipped on purpose ("think of it
+as magic"): it reuses S-boxes and linear steps, and Andreeva called it the
+least understood part of AES, in the sense that nobody knows how much of its
+complexity is needed. Andreeva also said the round steps are to be
+understood, not memorised [S58].
 
 ### The S-box, derived rather than copied
 
@@ -193,6 +307,14 @@ them against FIPS 197 Table 4 [S21]. The standard's own worked example
 $S(\{53\}) = \{ed\}$ is a separate test, as is $\{57\}\cdot\{83\} = \{c1\}$ from
 sec. 4.2.
 
+As used in practice, the S-box is a $16\times16$ table: the high four bits of
+the input byte select the row, the low four bits the column; the lecture's
+example reads $S(\{42\}) = \{2c\}$ off row 4, column 2 [S58, S21]. Software
+uses the table lookup; modern x86 processors also have dedicated AES
+instructions (AES-NI) [S58]. Why a non-linear step at all: a cipher made only
+of linear and affine maps is a linear system in the key and falls to linear
+algebra; the S-box is the only non-linear part of AES [S58].
+
 ### Known attacks
 
 Both far from practical, both worth quoting [S8]:
@@ -206,6 +328,17 @@ Both far from practical, both worth quoting [S8]:
 
 AES has no better single-key attack after 25 years of attention. Modelling it as
 a strong PRP is a heuristic, but a very well-tested one.
+
+**Security margin** [S58]. Designers add rounds beyond what known attacks
+reach. For AES-128, attacks on reduced versions reach about five or six of the
+ten rounds, leaving roughly four rounds of margin; diffusion alone is already
+good after about four rounds, but differential attacks also exploit the
+S-box, so diffusion is not enough by itself.
+
+**The closing warning** [S58]: a block cipher is not an encryption scheme. It
+maps one fixed-size block, deterministically; encrypting real data needs a
+**mode of operation** on top, and a bad mode undoes everything the cipher
+achieves (note 06).
 
 ## Worked example
 
@@ -275,6 +408,98 @@ of $m_b$: output $0$ if it is $0^{32}$, else $1$. Correct with probability 1,
 advantage $1/2$, and it never touches the key or the round function. (Real DES
 wraps the rounds in a public initial permutation and its inverse; the adversary
 undoes them first, Kerckhoffs again.)
+
+## Cards
+
+```card id=crypto-l3-generic-attacks
+Two generic attacks on any block cipher, and the size requirement each forces.
+---
+Exhaustive key search: keys of at least 128 bits. Dictionary (codebook) attacks and statistics: blocks of at least 64 bits (AES: 128).
+```
+
+```card id=crypto-l3-ideal-cipher
+What is the ideal cipher, and why is it not used?
+---
+Each key selects an independent uniformly random permutation of $\{0,1\}^\ell$. Describing one such permutation of 64-bit blocks takes about $2^{70}$ bits of key.
+```
+
+```card id=crypto-l3-ideal-vs-otp
+Why is the ideal cipher not just a one-time pad?
+---
+One plaintext-ciphertext pair reveals the whole one-time-pad key ($k=m\oplus c$); for a random permutation one pair says almost nothing about the others.
+```
+
+```card id=crypto-l3-confusion-diffusion
+Confusion and diffusion: meaning and which layer gives which.
+---
+Confusion: the plaintext/key-ciphertext relation is obscured, from the non-linear S-boxes. Diffusion: each output bit depends on many input bits, from the permutation/mixing layer.
+```
+
+```card id=crypto-l3-avalanche
+Avalanche criterion.
+---
+Flipping one input bit should change about half (at least half, per the lecture) of the output bits.
+```
+
+```card id=crypto-l3-spn-key
+In an SPN, why a fixed public S-box with the key XORed in, rather than secret random S-boxes?
+---
+Random S-boxes as the key are far too large (about 32 KB for 16 rounds of eight 8-bit boxes). $y_i=S(x_i\oplus k_i)$ keeps confusion with short round keys from one master key.
+```
+
+```card id=crypto-l3-feistel
+Feistel round and its inverse.
+---
+$L_i=R_{i-1}$, $R_i=L_{i-1}\oplus f_{k_i}(R_{i-1})$. Inverse: $R_{i-1}=L_i$, $L_{i-1}=R_i\oplus f_{k_i}(L_i)$. $f$ need not be invertible.
+```
+
+```card id=crypto-l3-des-params
+DES: block, key, rounds, structure.
+---
+64-bit block, 56-bit key (IBM's Lucifer had 128), 16 Feistel rounds, 1977.
+```
+
+```card id=crypto-l3-des-round
+The DES round function $f$, in four steps.
+---
+Expand 32 to 48 bits; XOR the 48-bit round key; eight S-boxes 6 to 4 bits; permute the 32 bits. Not invertible, which Feistel allows.
+```
+
+```card id=crypto-l3-des-attacks
+Differential vs linear cryptanalysis of DES, and the best practical attack.
+---
+Differential (Biham-Shamir 1990): $2^{47}$ chosen plaintexts. Linear (Matsui 1993): $2^{43}$ known pairs. Best in practice: exhaustive key search (1999 Deep Crack: 22 hours).
+```
+
+```card id=crypto-l3-mitm
+Double encryption with two 56-bit keys: cost of meet-in-the-middle?
+---
+Tabulate $E_{k_1}(x)$ for all $k_1$, compare with $E^{-1}_{k_2}(y)$: $2^{56}$ memory and $2^{57}$ evaluations, not $2^{112}$.
+```
+
+```card id=crypto-l3-3des
+Two-key Triple DES: formula, security, why DES$^{-1}$ in the middle?
+---
+$\mathsf{DES}_{k_1}(\mathsf{DES}^{-1}_{k_2}(\mathsf{DES}_{k_1}(x)))$, 112 key bits, 112-bit security (NIST: 80). With $k_1=k_2$ it collapses to single DES (backward compatibility).
+```
+
+```card id=crypto-l3-aes-round
+AES: key sizes, rounds, round steps and their roles.
+---
+128/192/256-bit keys, 10/12/14 rounds, 128-bit block. SubBytes (confusion), ShiftRows and MixColumns (diffusion), AddRoundKey; a key is also added before round 1.
+```
+
+```card id=crypto-l3-aes-sbox
+How is the AES S-box defined, and how is it looked up?
+---
+Inverse in $\mathrm{GF}(2^8)=\mathbb F_2[X]/(X^8+X^4+X^3+X+1)$, then an affine map. Table lookup: high nibble = row, low nibble = column, e.g. $S(\{42\})=\{2c\}$.
+```
+
+```card id=crypto-l3-not-encryption
+Is a block cipher an encryption scheme?
+---
+No. It is a deterministic permutation of one block; encryption needs a mode of operation on top, and a bad mode breaks everything.
+```
 
 ## Code
 
